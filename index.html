@@ -88,6 +88,15 @@
       console.error(e);
     }
   }
+  // On page load, check for ?order=ORDER_ID and auto-load the order
+  window.onload = function () {
+    const params = new URLSearchParams(window.location.search);
+    const orderId = params.get('order');
+    if (orderId) {
+      document.getElementById('orderId').value = orderId;
+      loadOrder();
+    }
+  };
 </script>
 
 </body>
