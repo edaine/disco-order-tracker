@@ -1,2 +1,6 @@
 .venv
-data
+data/orders.csv
+data/orders_with_url.csv
+reset.html
+passes
+.DS_Store

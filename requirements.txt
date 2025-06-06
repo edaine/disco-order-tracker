@@ -1,0 +1,6 @@
+pandas
+qrcode[pil]
+jinja2
+weasyprint
+PyPDF2
+isort
