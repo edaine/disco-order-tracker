@@ -150,7 +150,7 @@
                     <strong>${order.parent_name}</strong> (Order #${order.orderId})
                     <span class="checkmark" style="color: ${checked ? '#2ecc40' : '#888'}; ${checked ? '' : 'cursor:pointer;'}">&#10003;</span>
                 </div>
-                <a href="html/passes/order_${order.orderId}.html" class="view-pass-link">View Pass</a>
+                <a href="passes/order_${order.orderId}.html" class="view-pass-link">View Pass</a>
                 `;
                 // Only add event listener if not checked in
                 if (!checked) {
@@ -170,7 +170,7 @@
             });
         }
 
-        fetch('data/orders.json')
+        fetch('../data/orders.json')
             .then(response => response.json())
             .then(data => {
                 // Only show one result per orderId (first occurrence)
