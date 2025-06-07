@@ -44,6 +44,7 @@ for order_id, group in df.groupby('orderId'):
     html_path = f'docs/passes/order_{order_id}.html'
     with open(html_path, 'w') as out:
         out.write(html)
+    print(html_path, ' -- DONE', flush=True)
 
     # Convert HTML to PDF
     pdf_path = f'passes/pdf/order_{order_id}.pdf'
