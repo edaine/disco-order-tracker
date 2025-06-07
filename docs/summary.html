@@ -143,12 +143,8 @@
                         .filter(row => row.face_painting_time)
                         .map(row => ({
                             name: row.face_painting_time,
-                            quantity: '1'
+                            quantity: row.face_painting_quantity || '1'
                         }));
-
-                    const facePaintingTimes = orderRows
-                        .filter(row => row.face_painting_time && row.face_painting_time.trim() !== "")
-                        .map(row => row.face_painting_time);
 
                     const foodItems = orderRows
                         .filter(row => row.food)
@@ -172,7 +168,7 @@
                             <li class="category">
                                 <strong>Face Painting Times</strong>
                                 <ul class="face-painting-list">
-                                    ${facePaintingSlots.length > 0 ? facePaintingSlots.map(slot => `<li>${slot.name} <span>(x${slot.quantity})</span></li>`).join('') : '<li><span style="color:#bbb;">N/A</span></li>'}
+                                    ${facePaintingSlots.length > 0 ? facePaintingSlots.map(item => `<li>${item.name} <span>(x${item.quantity})</span></li>`).join('') : '<li><span style="color:#bbb;">N/A</span></li>'}
                                 </ul>
                             </li>
                             <li class="category">
