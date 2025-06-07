@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reset Check-ins</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f7f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 60px auto;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 32px 24px 24px 24px;
+            text-align: center;
+        }
+        h2 {
+            color: #2d3a4a;
+            margin-top: 0;
+        }
+        input[type="password"] {
+            width: 80%;
+            padding: 12px;
+            font-size: 1.1em;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 24px;
+            font-size: 1em;
+            background: #e75480;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #c7436b;
+        }
+        .message {
+            margin-top: 18px;
+            font-weight: bold;
+        }
+        .success {
+            color: #2ecc40;
+        }
+        .error {
+            color: #b71c1c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Reset All Check-ins</h2>
+        <form id="reset-form" autocomplete="off">
+            <input type="password" id="pin" placeholder="Enter PIN code" required>
+            <br>
+            <button type="submit">Reset Check-ins</button>
+        </form>
+        <div id="message" class="message"></div>
+    </div>
+    <script>
+        // Set your PIN code here
+        const PIN_CODE = "4506";
+
+        document.getElementById('reset-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const pin = document.getElementById('pin').value;
+            const message = document.getElementById('message');
+            if (pin === PIN_CODE) {
+                Object.keys(localStorage)
+                    .filter(key => key.startsWith('checked_in_'))
+                    .forEach(key => localStorage.removeItem(key));
+                message.textContent = "All check-ins have been reset!";
+                message.className = "message success";
+                document.getElementById('reset-form').reset();
+            } else {
+                message.textContent = "Incorrect PIN code.";
+                message.className = "message error";
+            }
+        });
+    </script>
+</body>
+</html>

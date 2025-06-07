@@ -1,6 +1,5 @@
 .venv
-data/orders.csv
-data/orders_with_url.csv
-reset.html
-passes
+docs/data/orders.csv
+docs/data/orders_with_url.csv
+./passes
 .DS_Store

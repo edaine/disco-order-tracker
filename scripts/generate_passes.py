@@ -15,7 +15,7 @@ os.makedirs(ROOT / 'docs/passes', exist_ok=True)
 os.makedirs(ROOT / 'passes/pdf', exist_ok=True)
 
 # Load your CSV
-df = pd.read_csv(ROOT / 'data/orders_with_url.csv')
+df = pd.read_csv(ROOT / 'docs/data/orders_with_url.csv')
 
 # Load HTML template
 with open(ROOT / 'docs/templates/passes.html') as f:
