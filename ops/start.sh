@@ -27,6 +27,6 @@ python3 scripts/generate_passes.py
 echo "All Python scripts completed."
 
 echo "**************************************************************************"
-echo "Starting the server: http://localhost:8000/docs/search.html"
+echo "Starting the server: http://localhost:8000/docs/index.html"
 echo "**************************************************************************"
 python3 -m http.server 8000

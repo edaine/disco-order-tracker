@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Order Summary</title>
+    <title>Search Order Pass</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
@@ -10,163 +10,196 @@
             background: #f7f7fa;
             margin: 0;
             padding: 0;
-            font-size: 1.18em;
         }
         .container {
             max-width: 520px;
-            margin: 24px auto;
+            margin: 32px auto;
             background: #fff;
             border-radius: 14px;
             box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            padding: 24px 40px 24px 40px;
+            padding: 32px 24px 24px 24px;
         }
         h2 {
-            margin-top: 0;
             color: #2d3a4a;
-            font-size: 1.45em;
-            letter-spacing: 0.02em;
-            word-break: break-word;
-            margin-bottom: 16px;
+            margin-top: 0;
         }
-        h2 span {
-            font-size: 0.85em;
-            color: #888;
-            word-break: break-word;
+        .search-bar-wrapper {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 18px;
         }
-        ul {
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1em;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        .clear-btn {
+            display: none;
+            padding: 8px 16px;
+            font-size: 1em;
+            background: #e75480;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-left: 4px;
+            transition: background 0.2s;
+        }
+        .clear-btn:hover {
+            background: #c7436b;
+        }
+        .result-list {
             list-style: none;
-            padding-left: 0;
+            padding: 0;
             margin: 0;
         }
-        .category {
-            margin-bottom: 14px;
-            color: #333;
-        }
-        .category strong,
-        .label strong {
-            color: #e75480;
-            font-size: 1.08em;
-            font-weight: bold;
-        }
-        .food-list, .drink-list {
-            margin: 6px 0 0 16px;
-            padding-left: 0;
-        }
-        .food-list li, .drink-list li {
+        .result-item {
             background: #f0f4fa;
-            margin-bottom: 6px;
-            padding: 6px 18px;
+            margin-bottom: 10px;
+            padding: 14px 16px;
             border-radius: 7px;
             color: #333;
-            font-size: 1.08em;
+            display: flex;
+            flex-direction: column;
         }
-        .food-list li span, .drink-list li span {
+        .result-item a {
             color: #e75480;
-            font-weight: 400;
-        }
-        .label {
-            display: inline-block;
-            min-width: 110px;
-            color: #e75480;
+            text-decoration: none;
             font-weight: bold;
-            font-size: 1.05em;
-            vertical-align: top;
+            margin-top: 6px;
+            word-break: break-all;
+            cursor: pointer;
+        }
+        .checkmark {
+            color: #2ecc40;
+            font-size: 1.2em;
+            vertical-align: middle;
+            margin-left: 8px;
+            user-select: none;
         }
         .not-found {
             color: #b71c1c;
             font-weight: bold;
             text-align: center;
-            margin-top: 30px;
-            font-size: 1.1em;
+            margin-top: 20px;
         }
         @media (max-width: 600px) {
-            body {
-                font-size: 1.05em;
-            }
             .container {
-                padding: 12px 6vw 12px 6vw;
+                padding: 12px 2vw 12px 2vw;
                 margin: 8px 0;
                 max-width: 100vw;
                 border-radius: 0;
                 box-shadow: none;
             }
-            h2 {
-                font-size: 1.08em;
-                margin-bottom: 10px;
+            .search-bar-wrapper {
+                gap: 4px;
             }
-            .label {
-                min-width: 70px;
-                font-size: 1em;
-            }
-            .food-list, .drink-list {
-                margin: 4px 0 0 10px;
-            }
-            .food-list li, .drink-list li {
-                padding: 6px 8px;
-                font-size: 1em;
-                margin-bottom: 6px;
-            }
-            .category {
-                margin-bottom: 10px;
+            .clear-btn {
+                padding: 7px 10px;
+                font-size: 0.98em;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div id="order-summary"></div>
+        <h2>Search for Parent Name</h2>
+        <div class="search-bar-wrapper">
+            <input type="text" id="search" placeholder="Type parent name...">
+            <button class="clear-btn" id="clear-btn" type="button">Clear</button>
+        </div>
+        <ul id="results" class="result-list"></ul>
+        <div id="not-found" class="not-found" style="display:none;">No matching orders found.</div>
     </div>
     <script>
-        function getOrderIdFromUrl() {
-            const params = new URLSearchParams(window.location.search);
-            return params.get('orderId');
+        let orders = [];
+
+        function isCheckedIn(orderId) {
+            return localStorage.getItem('checked_in_' + orderId) === 'true';
+        }
+
+        // Simple fuzzy match: checks if all search words are in the parent_name (case-insensitive)
+        function fuzzyMatch(name, query) {
+            const words = query.trim().toLowerCase().split(/\s+/);
+            const lowerName = name.toLowerCase();
+            return words.every(word => lowerName.includes(word));
+        }
+
+        function renderResults(matches) {
+            const results = document.getElementById('results');
+            const notFound = document.getElementById('not-found');
+            results.innerHTML = '';
+            if (matches.length === 0) {
+                notFound.style.display = 'block';
+                return;
+            }
+            notFound.style.display = 'none';
+            matches.forEach(order => {
+                const checked = isCheckedIn(order.orderId);
+                const li = document.createElement('li');
+                li.className = 'result-item';
+                // In renderResults, update the link and status display:
+                li.innerHTML = `
+                <div>
+                    <strong>${order.parent_name}</strong> (Order #${order.orderId})
+                    <span class="checkmark" style="color: ${checked ? '#2ecc40' : '#888'}; ${checked ? '' : 'cursor:pointer;'}">&#10003;</span>
+                </div>
+                <a href="passes/order_${order.orderId}.html" class="view-pass-link">View Pass</a>
+                `;
+                // Only add event listener if not checked in
+                if (!checked) {
+                    li.querySelector('.checkmark').addEventListener('click', function(e) {
+                        localStorage.setItem('checked_in_' + order.orderId, 'true');
+                        renderResults(matches); // re-render to update UI
+                    });
+                }
+                // Navigate in the same window
+                li.querySelector('.view-pass-link').addEventListener('click', function(e) {
+                    localStorage.setItem('checked_in_' + order.orderId, 'true');
+                    e.preventDefault();
+                    window.location.href = this.getAttribute('href');
+                });
+                
+                results.appendChild(li);
+            });
         }
 
         fetch('../data/orders.json')
             .then(response => response.json())
             .then(data => {
-                const orderId = getOrderIdFromUrl();
-                const orderRows = data.filter(o => o.orderId === orderId);
-                if (orderRows.length > 0) {
-                    const foodItems = orderRows
-                        .filter(row => row.food)
-                        .map(row => ({
-                            name: row.food,
-                            quantity: row.quantity || '1'
-                        }));
-                    const drinkItems = orderRows
-                        .filter(row => row.drink)
-                        .map(row => ({
-                            name: row.drink,
-                            quantity: row.drink_quantity || '1'
-                        }));
-                    const { parent_name, face_painting_time, tickets } = orderRows[0];
-                    document.getElementById('order-summary').innerHTML = `
-                        <h2>Order #${orderId}<br><span>${parent_name}</span></h2>
-                        <ul>
-                            <li class="category">
-                                <strong>Tickets:</strong> ${tickets || '<span style="color:#bbb;">N/A</span>'}
-                            </li>
-                            <li class="category">
-                                <strong>Face Painting:</strong> ${face_painting_time || '<span style="color:#bbb;">N/A</span>'}
-                            </li>
-                            <li class="category">
-                                <strong>Food</strong>
-                                <ul class="food-list">
-                                    ${foodItems.length > 0 ? foodItems.map(item => `<li>${item.name} <span>(x${item.quantity})</span></li>`).join('') : '<li><span style="color:#bbb;">N/A</span></li>'}
-                                </ul>
-                            </li>
-                            <li class="category">
-                                <strong>Drinks</strong>
-                                <ul class="drink-list">
-                                    ${drinkItems.length > 0 ? drinkItems.map(item => `<li>${item.name} <span>(x${item.quantity})</span></li>`).join('') : '<li><span style="color:#bbb;">N/A</span></li>'}
-                                </ul>
-                            </li>
-                        </ul>
-                    `;
-                } else {
-                    document.getElementById('order-summary').innerHTML = '<div class="not-found">Order not found.</div>';
-                }
+                // Only show one result per orderId (first occurrence)
+                const seen = new Set();
+                orders = data.filter(row => {
+                    if (seen.has(row.orderId)) return false;
+                    seen.add(row.orderId);
+                    return true;
+                });
             });
+
+        const searchInput = document.getElementById('search');
+        const clearBtn = document.getElementById('clear-btn');
+
+        searchInput.addEventListener('input', function() {
+            const query = this.value;
+            clearBtn.style.display = query ? 'inline-block' : 'none';
+            if (!query.trim()) {
+                renderResults([]);
+                return;
+            }
+            const matches = orders.filter(order => fuzzyMatch(order.parent_name, query));
+            renderResults(matches);
+        });
+
+        clearBtn.addEventListener('click', function() {
+            searchInput.value = '';
+            clearBtn.style.display = 'none';
+            renderResults([]);
+            searchInput.focus();
+        });
     </script>
-</body>
