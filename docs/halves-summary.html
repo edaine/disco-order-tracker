@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Half-and-Half Pizza Combination Summary</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f7f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 32px auto;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 32px 24px 24px 24px;
+        }
+        h2 {
+            color: #2d3a4a;
+            margin-top: 0;
+            margin-bottom: 24px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 12px;
+        }
+        th, td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+        th {
+            background: #f0f4fa;
+            color: #e75480;
+        }
+        .total-row {
+            background: #f0f4fa;
+            font-weight: bold;
+        }
+        .no-data {
+            color: #b71c1c;
+            text-align: center;
+            margin-top: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Half-and-Half Pizza Combination Summary</h2>
+        <div><a class="details-link" href="half-orders.html">View details</a></div>
+        <div id="combos-table"></div>
+    </div>
+    <script>
+        // Helper: extract all half-and-half pizza names for an orderId
+        function getHalfHalfCombosByOrder(data) {
+            const combosByOrder = {};
+            data.forEach(row => {
+                const orderId = row.orderId;
+                const food = row.food || '';
+                if (/half/i.test(food) && /pizza/i.test(food)) {
+                    if (!combosByOrder[orderId]) combosByOrder[orderId] = [];
+                    combosByOrder[orderId].push(food.trim());
+                }
+            });
+            // For each order, sort and join the combo names for uniqueness
+            const comboSet = {};
+            Object.values(combosByOrder).forEach(comboArr => {
+                if (comboArr.length === 0) return;
+                // Sort for canonical representation
+                const comboKey = comboArr.sort().join(' + ');
+                comboSet[comboKey] = (comboSet[comboKey] || 0) + 1;
+            });
+            return comboSet;
+        }
+
+        function renderCombosTable(comboSet) {
+            const container = document.getElementById('combos-table');
+            const combos = Object.keys(comboSet);
+            if (combos.length === 0) {
+                container.innerHTML = '<div class="no-data">No half-and-half pizza combinations found.</div>';
+                return;
+            }
+            let html = '<table>';
+            html += `
+                <tr>
+                    <th>Half-and-Half Combination</th>
+                    <th>Number of Orders</th>
+                </tr>
+            `;
+            let totalOrders = 0;
+            combos.forEach(combo => {
+                html += `<tr>
+                    <td>${combo}</td>
+                    <td>${comboSet[combo]}</td>
+                </tr>`;
+                totalOrders += comboSet[combo];
+            });
+            html += `<tr class="total-row"><td>Total Orders</td><td>${totalOrders}</td></tr>`;
+            html += '</table>';
+            container.innerHTML = html;
+        }
+
+        fetch('data/orders.json')
+            .then(response => response.json())
+            .then(data => {
+                const comboSet = getHalfHalfCombosByOrder(data);
+                renderCombosTable(comboSet);
+            });
+    </script>
+</body>
+</html>

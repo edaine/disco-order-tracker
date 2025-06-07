@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Half-and-Half Pizza Box Summary</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f7f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 32px auto;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 32px 24px 24px 24px;
+        }
+        h2 {
+            color: #2d3a4a;
+            margin-top: 0;
+            margin-bottom: 24px;
+        }
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 12px;
+        }
+        th, td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+        th {
+            background: #f0f4fa;
+            color: #e75480;
+        }
+        .order-separator {
+            background: #e75480;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.1em;
+            border-top: 3px solid #e75480;
+            border-bottom: 3px solid #e75480;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        .details-link {
+            color: #e75480;
+            font-weight: bold;
+            text-decoration: none;
+            margin-left: 12px;
+            font-size: 0.98em;
+            cursor: pointer;
+        }
+        .details-link:hover {
+            text-decoration: underline;
+        }
+        .total-row {
+            background: #f0f4fa;
+            font-weight: bold;
+        }
+        .no-data {
+            color: #b71c1c;
+            text-align: center;
+            margin-top: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Half-and-Half Pizza Box Summary</h2>
+        <div id="summary-table"></div>
+        <div style="margin-top:12px;color:#888;font-size:0.98em;">
+            <em>Note: Two halves are counted as one box. Odd halves round up to the next box.</em>
+        </div>
+    </div>
+    <script>
+        // Utility to sum quantities for half-and-half pizzas per orderId, counting two halves as one box
+        function getHalfHalfSummary(data) {
+            const orders = {};
+            data.forEach(row => {
+                const orderId = row.orderId;
+                const food = row.food || '';
+                if (/half/i.test(food) && /pizza/i.test(food)) {
+                    const qty = Number(row.quantity) || 1;
+                    if (!orders[orderId]) {
+                        orders[orderId] = { totalHalves: 0, items: {} };
+                    }
+                    orders[orderId].totalHalves += qty;
+                    orders[orderId].items[food] = (orders[orderId].items[food] || 0) + qty;
+                }
+            });
+            // Calculate boxes for each orderId
+            Object.values(orders).forEach(order => {
+                order.boxes = Math.ceil(order.totalHalves / 2);
+            });
+            return orders;
+        }
+
+        function renderSummary(orders) {
+            const container = document.getElementById('summary-table');
+            const orderIds = Object.keys(orders);
+            if (orderIds.length === 0) {
+                container.innerHTML = '<div class="no-data">No half-and-half pizzas found.</div>';
+                return;
+            }
+            let html = '<table>';
+            html += `
+                <tr>
+                    <th>Order ID</th>
+                    <th>Half-and-Half Pizza</th>
+                    <th>Halves</th>
+                    <th>Boxes Needed</th>
+                    <th></th>
+                </tr>
+            `;
+            let grandTotalBoxes = 0;
+            orderIds.forEach(orderId => {
+                const order = orders[orderId];
+                grandTotalBoxes += order.boxes;
+                // Separator row for each orderId
+                html += `<tr>
+                    <td colspan="5" class="order-separator">
+                        ORDER #${orderId}
+                        <a class="details-link" href="index.html?orderId=${orderId}">View details</a>
+                    </td>
+                </tr>`;
+                const itemNames = Object.keys(order.items);
+                itemNames.forEach(item => {
+                    html += `<tr>
+                        <td></td>
+                        <td>${item}</td>
+                        <td>${order.items[item]}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>`;
+                });
+                // Per-order total row
+                html += `<tr>
+                    <td></td>
+                    <td style="font-weight:bold;">Total for Order #${orderId}</td>
+                    <td style="font-weight:bold;">${order.totalHalves}</td>
+                    <td style="font-weight:bold;">${order.boxes}</td>
+                    <td></td>
+                </tr>`;
+            });
+            html += `<tr class="total-row"><td colspan="3">Total Boxes Needed</td><td>${grandTotalBoxes}</td><td></td></tr>`;
+            html += '</table>';
+            container.innerHTML = html;
+        }
+
+        fetch('data/orders.json')
+            .then(response => response.json())
+            .then(data => {
+                const summary = getHalfHalfSummary(data);
+                renderSummary(summary);
+            });
+    </script>
+</body>
+</html>
