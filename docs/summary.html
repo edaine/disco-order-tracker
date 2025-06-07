@@ -130,6 +130,36 @@
             }, 0);
         }
 
+        function sumItems(rows, nameKey, qtyKey) {
+            const map = {};
+            rows.forEach(row => {
+                const name = row[nameKey];
+                if (name && name.trim() !== "") {
+                    const qty = Number(row[qtyKey]) || 1;
+                    map[name] = (map[name] || 0) + qty;
+                }
+            });
+            // Convert to array of {name, quantity}
+            return Object.entries(map).map(([name, quantity]) => ({ name, quantity }));
+        }
+
+        // Group and order food items: Full first, then Half, then others
+        function groupAndOrderFoodItems(foodItems) {
+            const full = [];
+            const half = [];
+            const other = [];
+            foodItems.forEach(item => {
+                if (/full/i.test(item.name)) {
+                    full.push(item);
+                } else if (/half/i.test(item.name)) {
+                    half.push(item);
+                } else {
+                    other.push(item);
+                }
+            });
+            return [...full, ...half, ...other];
+        }
+
         fetch('data/orders.json')
             .then(response => response.json())
             .then(data => {
@@ -139,25 +169,28 @@
                     const { parent_name, face_painting_time } = orderRows[0];
 
                     const tickets = sumTickets(orderRows);
-                    const facePaintingSlots = orderRows
-                        .filter(row => row.face_painting_time)
-                        .map(row => ({
-                            name: row.face_painting_time,
-                            quantity: row.face_painting_quantity || '1'
-                        }));
 
-                    const foodItems = orderRows
-                        .filter(row => row.food)
-                        .map(row => ({
-                            name: row.food,
-                            quantity: row.quantity || '1'
-                        }));
-                    const drinkItems = orderRows
-                        .filter(row => row.drink)
-                        .map(row => ({
-                            name: row.drink,
-                            quantity: row.drink_quantity || '1'
-                        }));
+                    // Group face painting slots by time and sum quantities
+                    const facePaintingSlots = sumItems(
+                        orderRows.filter(row => row.face_painting_time),
+                        'face_painting_time',
+                        'face_painting_quantity'
+                    );
+
+                    // Group food items by name and sum quantities
+                    const foodItemsRaw = sumItems(
+                        orderRows.filter(row => row.food),
+                        'food',
+                        'quantity'
+                    );
+                    const foodItems = groupAndOrderFoodItems(foodItemsRaw);
+
+                    // Group drink items by name and sum quantities
+                    const drinkItems = sumItems(
+                        orderRows.filter(row => row.drink),
+                        'drink',
+                        'drink_quantity'
+                    );
 
                     document.getElementById('order-summary').innerHTML = `
                         <h2>Order #${orderId}<br><span>${parent_name}</span></h2>
@@ -168,19 +201,31 @@
                             <li class="category">
                                 <strong>Face Painting Times</strong>
                                 <ul class="face-painting-list">
-                                    ${facePaintingSlots.length > 0 ? facePaintingSlots.map(item => `<li>${item.name} <span>(x${item.quantity})</span></li>`).join('') : '<li><span style="color:#bbb;">N/A</span></li>'}
+                                    ${
+                                        facePaintingSlots.length > 0
+                                            ? facePaintingSlots.map(slot => `<li>${slot.name} <span>(x${slot.quantity})</span></li>`).join('')
+                                            : '<li><span style="color:#bbb;">N/A</span></li>'
+                                    }
                                 </ul>
                             </li>
                             <li class="category">
                                 <strong>Food</strong>
                                 <ul class="food-list">
-                                    ${foodItems.length > 0 ? foodItems.map(item => `<li>${item.name} <span>(x${item.quantity})</span></li>`).join('') : '<li><span style="color:#bbb;">N/A</span></li>'}
+                                    ${
+                                        foodItems.length > 0
+                                            ? foodItems.map(item => `<li>${item.name} <span>(x${item.quantity})</span></li>`).join('')
+                                            : '<li><span style="color:#bbb;">N/A</span></li>'
+                                    }
                                 </ul>
                             </li>
                             <li class="category">
                                 <strong>Drinks</strong>
                                 <ul class="drink-list">
-                                    ${drinkItems.length > 0 ? drinkItems.map(item => `<li>${item.name} <span>(x${item.quantity})</span></li>`).join('') : '<li><span style="color:#bbb;">N/A</span></li>'}
+                                    ${
+                                        drinkItems.length > 0
+                                            ? drinkItems.map(item => `<li>${item.name} <span>(x${item.quantity})</span></li>`).join('')
+                                            : '<li><span style="color:#bbb;">N/A</span></li>'
+                                    }
                                 </ul>
                             </li>
                         </ul>
