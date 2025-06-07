@@ -64,6 +64,12 @@
             background: #f0f4fa;
             font-weight: bold;
         }
+        .halves-label {
+            color: #888;
+            font-size: 0.98em;
+            font-style: italic;
+            margin-left: 6px;
+        }
         .no-data {
             color: #b71c1c;
             text-align: center;
@@ -87,18 +93,27 @@
             data.forEach(row => {
                 const orderId = row.orderId;
                 const food = row.food || '';
-                if (/half/i.test(food) && /pizza/i.test(food)) {
-                    const qty = Number(row.quantity) || 1;
+                if (/pizza/i.test(food)) {
                     if (!orders[orderId]) {
-                        orders[orderId] = { totalHalves: 0, items: {} };
+                        orders[orderId] = { totalFull: 0, totalHalves: 0, extraBoxes: 0, items: {} };
                     }
-                    orders[orderId].totalHalves += qty;
-                    orders[orderId].items[food] = (orders[orderId].items[food] || 0) + qty;
-                }
+
+                    if (/half/i.test(food)) {
+                        const qty = Number(row.quantity) || 1;
+                        orders[orderId].totalHalves += qty/2;
+                        orders[orderId].items[food] = (orders[orderId].items[food] || 0) + qty;
+                    }
+                    else if (/full/i.test(food)) {
+                        const qty = Number(row.quantity) || 1;
+                        orders[orderId].totalFull += qty;
+                        orders[orderId].items[food] = (orders[orderId].items[food] || 0) + qty;
+                    }
+            }
             });
             // Calculate boxes for each orderId
             Object.values(orders).forEach(order => {
-                order.boxes = Math.ceil(order.totalHalves / 2);
+                order.boxes = Math.ceil(order.totalHalves / 2) + Math.ceil(order.totalFull);
+                order.extraBoxes += order.totalHalves % 2 === 1 ? 1 : 0; // Add an extra box if there's an odd half
             });
             return orders;
         }
@@ -110,25 +125,28 @@
                 container.innerHTML = '<div class="no-data">No half-and-half pizzas found.</div>';
                 return;
             }
+
             let html = '<table>';
             html += `
                 <tr>
                     <th>Order ID</th>
-                    <th>Half-and-Half Pizza</th>
-                    <th>Halves</th>
-                    <th>Boxes Needed</th>
+                    <th>Pizza</th>
+                    <th>Qty</th>
+                    <th>Boxes</th>
                     <th></th>
                 </tr>
             `;
+ 
             let grandTotalBoxes = 0;
+            let grandTotalExtraBoxes = 0;
             orderIds.forEach(orderId => {
                 const order = orders[orderId];
                 grandTotalBoxes += order.boxes;
+                grandTotalExtraBoxes += order.extraBoxes;
                 // Separator row for each orderId
                 html += `<tr>
                     <td colspan="5" class="order-separator">
                         ORDER #${orderId}
-                        <a class="details-link" href="index.html?orderId=${orderId}">View details</a>
                     </td>
                 </tr>`;
                 const itemNames = Object.keys(order.items);
@@ -137,7 +155,7 @@
                         <td></td>
                         <td>${item}</td>
                         <td>${order.items[item]}</td>
-                        <td></td>
+                        <td>${/half/i.test(item) ? order.items[item]/2 : order.items[item]}</td>
                         <td></td>
                     </tr>`;
                 });
@@ -145,12 +163,14 @@
                 html += `<tr>
                     <td></td>
                     <td style="font-weight:bold;">Total for Order #${orderId}</td>
-                    <td style="font-weight:bold;">${order.totalHalves}</td>
+                    <td style="font-weight:bold;"></td>
                     <td style="font-weight:bold;">${order.boxes}</td>
                     <td></td>
                 </tr>`;
             });
             html += `<tr class="total-row"><td colspan="3">Total Boxes Needed</td><td>${grandTotalBoxes}</td><td></td></tr>`;
+            html += `<tr class="total-row"><td colspan="3">Total Extra Boxes (Unpaired Halves)</td><td>${grandTotalExtraBoxes}</td><td></td></tr>`;
+
             html += '</table>';
             container.innerHTML = html;
         }

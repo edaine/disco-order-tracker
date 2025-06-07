@@ -132,12 +132,15 @@
                 <tr class="category-header"><td colspan="2">Pizzas</td></tr>
                 <tr><th>Pizza Type</th><th>Total</th></tr>`;
             const pizzaTypes = Object.keys(prep.pizzaTotals).sort();
+            let pizzaTotalSum = 0;
             if (pizzaTypes.length === 0) {
                 html += `<tr><td colspan="2" class="no-data">No pizzas found.</td></tr>`;
             } else {
                 pizzaTypes.forEach(type => {
                     html += `<tr><td>${type} <span class="halves-label">(${prep.pizzaHalves[type] || 0} halves)</span></td><td>${prep.pizzaTotals[type]}</td></tr>`;
+                    pizzaTotalSum += prep.pizzaTotals[type];
                 });
+                html += `<tr class="total-row"><td>Total Pizzas</td><td>${pizzaTotalSum}</td></tr>`;
             }
             html += `</table>`;
 
@@ -146,13 +149,16 @@
                 <tr class="category-header"><td colspan="2">Other Food Items</td></tr>
                 <tr><th>Food</th><th>Total</th></tr>`;
             const otherTypes = Object.keys(prep.otherFoods);
+            let otherTotalSum = 0;
             if (otherTypes.length === 0) {
                 html += `<tr><td colspan="2" class="no-data">No other food items found.</td></tr>`;
             } else {
                 otherTypes.forEach(type => {
                     html += `<tr><td>${type}</td><td>${prep.otherFoods[type]}</td></tr>`;
+                    otherTotalSum += prep.otherFoods[type];
                 });
             }
+            html += `<tr class="total-row"><td>Total Other Foods</td><td>${otherTotalSum}</td></tr>`;
             html += `</table>`;
 
             // Drinks
@@ -160,13 +166,16 @@
                 <tr class="category-header"><td colspan="2">Drinks</td></tr>
                 <tr><th>Drink</th><th>Total</th></tr>`;
             const drinkTypes = Object.keys(prep.drinks).sort();
+            let drinkTotalSum = 0;
             if (drinkTypes.length === 0) {
                 html += `<tr><td colspan="2" class="no-data">No drinks found.</td></tr>`;
             } else {
                 drinkTypes.forEach(type => {
                     html += `<tr><td>${type}</td><td>${prep.drinks[type]}</td></tr>`;
+                    drinkTotalSum += prep.drinks[type];
                 });
             }
+            html += `<tr class="total-row"><td>Total Drinks</td><td>${drinkTotalSum}</td></tr>`;
             html += `</table>`;
 
             container.innerHTML = html;
