@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Preparation List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f7f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 32px auto;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 32px 24px 24px 24px;
+        }
+        h2 {
+            color: #2d3a4a;
+            margin-top: 0;
+            margin-bottom: 24px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 12px;
+        }
+        th, td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+        th {
+            background: #f0f4fa;
+            color: #e75480;
+        }
+        .total-row {
+            background: #f0f4fa;
+            font-weight: bold;
+        }
+        .no-data {
+            color: #b71c1c;
+            text-align: center;
+            margin-top: 24px;
+            font-weight: bold;
+        }
+        .category-header {
+            background: #e75480;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.08em;
+            letter-spacing: 1px;
+        }
+        .halves-label {
+            color: #888;
+            font-size: 0.98em;
+            font-style: italic;
+            margin-left: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Preparation List</h2>
+        <div id="prep-list"></div>
+    </div>
+    <script>
+        function removeParentheses(str) {
+            return str.replace(/\s*\([^)]*\)/g, '');
+        }
+        // Helper to sum up all food and drink items, treating two halves as one full pizza
+        function getPreparationList(data) {
+            const pizzaHalves = {};
+            const pizzaFulls = {};
+            const drinks = {};
+            const otherFoods = {};
+
+            data.forEach(row => {
+                // Food
+                const food = (row.food || '').trim();
+                const qty = Number(row.quantity) || 1;
+                if (food) {
+                    if (/half/i.test(food) && /pizza/i.test(food)) {
+                        // Extract pizza type (e.g., "Pepperoni Pizza (Half)" -> "Pepperoni Pizza")
+                        const match = food.match(/(.*pizza)\s*\(half\)/i);
+                        const pizzaType = match ? match[1].trim() : food.replace(/half/i, '').trim();
+                        pizzaHalves[removeParentheses(pizzaType)] = (pizzaHalves[removeParentheses(pizzaType)] || 0) + qty;
+                    } else if (/full/i.test(food) && /pizza/i.test(food)) {
+                        // Extract pizza type (e.g., "Pepperoni Pizza (Full)" -> "Pepperoni Pizza")
+                        const match = food.match(/(.*pizza)\s*\(full\)/i);
+                        const pizzaType = match ? match[1].trim() : food.replace(/full/i, '').trim();
+                        pizzaFulls[removeParentheses(pizzaType)] = (pizzaFulls[removeParentheses(pizzaType)] || 0) + qty;
+                    } else if (/pizza/i.test(food)) {
+                        // Generic pizza (not half or full)
+                        pizzaFulls[removeParentheses(food)] = (pizzaFulls[removeParentheses(food)] || 0) + qty;
+                    } else {
+                        // Other food
+                        otherFoods[removeParentheses(food)] = (otherFoods[removeParentheses(food)] || 0) + qty;
+                    }
+                }
+                // Drinks
+                const drink = (row.drink || '').trim();
+                const drinkQty = Number(row.drink_quantity) || 1;
+                if (drink) {
+                    drinks[drink] = (drinks[drink] || 0) + drinkQty;
+                }
+            });
+
+            // Combine halves and fulls for pizzas
+            const pizzaTotals = {};
+            Object.keys(pizzaFulls).forEach(type => {
+                pizzaTotals[type] = (pizzaTotals[type] || 0) + pizzaFulls[type];
+            });
+            Object.keys(pizzaHalves).forEach(type => {
+                // Two halves = one full pizza, round up for odd halves
+                pizzaTotals[type] = (pizzaTotals[type] || 0) + Math.ceil(pizzaHalves[type] / 2);
+            });
+
+            return { pizzaTotals, pizzaHalves,drinks, otherFoods };
+        }
+
+        function renderPrepList(prep) {
+            const container = document.getElementById('prep-list');
+            let html = '';
+
+            // Pizzas
+            html += `<table>
+                <tr class="category-header"><td colspan="2">Pizzas</td></tr>
+                <tr><th>Pizza Type</th><th>Total</th></tr>`;
+            const pizzaTypes = Object.keys(prep.pizzaTotals).sort();
+            if (pizzaTypes.length === 0) {
+                html += `<tr><td colspan="2" class="no-data">No pizzas found.</td></tr>`;
+            } else {
+                pizzaTypes.forEach(type => {
+                    html += `<tr><td>${type} <span class="halves-label">(${prep.pizzaHalves[type] || 0} halves)</span></td><td>${prep.pizzaTotals[type]}</td></tr>`;
+                });
+            }
+            html += `</table>`;
+
+            // Other Foods
+            html += `<table>
+                <tr class="category-header"><td colspan="2">Other Food Items</td></tr>
+                <tr><th>Food</th><th>Total</th></tr>`;
+            const otherTypes = Object.keys(prep.otherFoods);
+            if (otherTypes.length === 0) {
+                html += `<tr><td colspan="2" class="no-data">No other food items found.</td></tr>`;
+            } else {
+                otherTypes.forEach(type => {
+                    html += `<tr><td>${type}</td><td>${prep.otherFoods[type]}</td></tr>`;
+                });
+            }
+            html += `</table>`;
+
+            // Drinks
+            html += `<table>
+                <tr class="category-header"><td colspan="2">Drinks</td></tr>
+                <tr><th>Drink</th><th>Total</th></tr>`;
+            const drinkTypes = Object.keys(prep.drinks).sort();
+            if (drinkTypes.length === 0) {
+                html += `<tr><td colspan="2" class="no-data">No drinks found.</td></tr>`;
+            } else {
+                drinkTypes.forEach(type => {
+                    html += `<tr><td>${type}</td><td>${prep.drinks[type]}</td></tr>`;
+                });
+            }
+            html += `</table>`;
+
+            container.innerHTML = html;
+        }
+
+        fetch('data/orders.json')
+            .then(response => response.json())
+            .then(data => {
+                const prep = getPreparationList(data);
+                renderPrepList(prep);
+            });
+    </script>
+</body>
+</html>
