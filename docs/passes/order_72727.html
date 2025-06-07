@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Order Pass</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f7f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 24px auto;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 24px 40px 24px 40px;
+        }
+        .back-btn-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 8px 18px;
+            background: #e75480;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .back-btn:hover {
+            background: #c7436b;
+        }
+        h1 {
+            color: #2d3a4a;
+        }
+        .pass {
+            border: 2px dashed #e75480;
+            border-radius: 12px;
+            width: 340px;
+            padding: 18px;
+            margin: 16px auto;
+            text-align: center;
+        }
+        .qr { margin: 12px 0; }
+        h2 { margin: 0 0 8px 0; color: #e75480; }
+        .info { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pass">
+            <h2>Order #72727</h2>
+            <div class="info"><strong>Parent:</strong> Lorena Balea Raitz</div>
+            <div class="qr">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAAEIUlEQVR4nO1cXWqkQBCuKoU8KuQAOYreYI+05Ei5gR4lBwjo44BSS1X/OGFXukd2MjFd34NoWx9jQ1H/PchwDCMdJAIYMwVKSuzBmClQUmIPxkyBkhJ7MGYKlJTYgzFToKTEHoz5E5noUQP28jxiDQAzIozhFfZzvHvw1x4BHWIJjJnJ7FgwAfBruyIArIh9w4w9VPpKQu/t7op5AGTMH8mco32Zn9gbI9WmZgHs5xp4cPaq/g5fezvoAMfBmLcysW8uyEOzAHTvNTBPK/JrKy8SzHyQMX8Us/5rZX7icKkWXcFuavE//iYZ80fqUCNhzhxWu+kZsHtTXzbJG/+WT7tPMua9maMmXK2qz+a3KlaHpvEQ9hJnC/7Xbx4AHSEpjHlvO8TbwthW7obHFpC3x89W6Gz7JGPejQkuXZfcXk2Qu7g8XlJ9ia6Z2QVG6vOcMA/n2icZ8846xKIv0PHiUnjvxkRzuu2FqM/GMB1KgsrTIeapYi0I+TtRJHn02hTslelQJqg8JuKLlIa0SCTKJXc8zNr18DVGHqT/8S2+9kbQrYQIY+b2y9qQg/12UdBF0vpL0BcxRpK6wbhVG8+4zyOgQ6wSfRlvgXXFPihqdHmJgbXEQ27NfFkOqBAmeI3QIFpTspCIuaCo05Ss2YJti6mzQQXqEIRw2qtUVB+nUldpmulQDqioGiNKc8O17Lsh1oKg4hAQiYbNzywVyAXPuE8y5t1rjJNG0mJfXDIf8v0hCvrc3kdGZofSoLJ6HWMrPfq5djaIAdaaoVlCJ2Ruw5papId9LRnzG8dDTcy8YMvLFn+JdWpfizQ7lAUqz5dBdGguhXdxNvjo2tcYw0Cs6VAaVNoMWiVGR53XWstorBsiYphb5BEl7Oa1lgvyGfdJxvyaGuMUDU+0SJ1rpH1u6JsdygIVwoTtqEYoVl/n9uB9mbo2VSTToWxQWcxOTJCeKhulc3Y9P3RxR4VUTE8OWb8sE1TgDBq4lkY8RqYp2ebLrF92I6goJmvSxe8SUovh8edcn5yTw1779u2KXuTBX3sEdIglMGY2c3UHW/1TaLLy60u4E2Okbsx8WSaorH4ZuHL0czhQ9o7A0HzIeg3YDVvnzEdGZ9snGfMrcnuFm7r3JWqOzfs4XeSkLB7KARX6vx/g5l5lAlbGGhU+CtKp2HPv8wjoEKvQvIx1dMhPnl2bIN7WrspF59onGfOL+mVVqDZeKRJH9VFYjTEbVCiTpcPhz3XM6I55aGUx9FwtL8sGFWqH2M/CxprRFC6u+Gi9jnxQqf/7Mf5afI8emg+5qBeL/yLzZn37bFB5PVf43GT1WT6E+aFokSymzgQV+r8f/O9LpSoV7NXDvpaMmQClBHZhzBQoKbEHY6ZASYk9GDMFSkrswZgpUFJiD8ZM4REx9R/2sRwrFKAnMwAAAABJRU5ErkJggg==" alt="QR Code" width="120" height="120">
+            </div>
+            <div><a href="https://edaine.github.io/disco-order-tracker/summary.html?orderId=72727">https://edaine.github.io/disco-order-tracker/summary.html?orderId=72727</a></div>
+        </div>
+        <!-- Embed another order summary below using an iframe -->
+        <div class="container">
+            <iframe
+                src="../summary.html?orderId=72727"
+                style="width:100%;border:none;min-height:400px;"
+                title="Order Summary"></iframe>
+        </div>
+        <div class="back-btn-wrapper">
+            <button class="back-btn" onclick="history.back()">&larr; Back to Search</button>
+        </div>
+    </div>
+</body>
+</html>

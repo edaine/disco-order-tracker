@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Order Pass</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f7f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 24px auto;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 24px 40px 24px 40px;
+        }
+        .back-btn-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 8px 18px;
+            background: #e75480;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .back-btn:hover {
+            background: #c7436b;
+        }
+        h1 {
+            color: #2d3a4a;
+        }
+        .pass {
+            border: 2px dashed #e75480;
+            border-radius: 12px;
+            width: 340px;
+            padding: 18px;
+            margin: 16px auto;
+            text-align: center;
+        }
+        .qr { margin: 12px 0; }
+        h2 { margin: 0 0 8px 0; color: #e75480; }
+        .info { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pass">
+            <h2>Order #73939</h2>
+            <div class="info"><strong>Parent:</strong> Parash Subedi</div>
+            <div class="qr">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAAEPElEQVR4nO1cW26rMBA9Hiz1E6QuIEshO7hLqu6SugNYShZQKXxWIpqrGduQVBeZojyaes6HA2SOAGk0b+MY29DTRiJgzBwoK7EEY+ZAWYklGDMHykoswZg5UFZiCcbMgbISSzDmb2S6CA+3H5xD35wcoEfpL/0jHj34abeANrEExszBh5+2k3V4Bfe70QODh2s7hgOqUSUujp7vPcmYN2cOk30ZVK0q5r9qjOpRbJMHi5apqbraPb8P2sAJMObN7dAEh/rDA/WHQ3vwYODkuW8quPYdT/yeZMy76RDa9xdGe3hhYEjOqz027or3JGP+KiZYgFZ/jhUDNTN3qBjtUf6X04BjxWfC3XO9Jxnz1sxeE65G7NDBw72p+qgiyanEQ26PU0jLrnXPDaAtJIUxb+3LeL7Q74IDA/cNHM+nF1JP955kzHv4MqjzCh5M8jI+AtzVo4hERVLXZr5sJagoHeIYCiWb0wVVGaNKyVG4NjNMh7KgwnRoipqD+qhKSTykehW0aY69BaZDWVBhuf0g8bTUE1GfYozU73WRs6EJwRBPR8/2nmTMm/fLdmJkDj44L+7qTylRf6YcTIyRpG7oG0iGdo17bgFtYgmMeaf6EEc3pn2NWCmqxymwlnhoKheZL8uCCmF6Xbl31RiNTv3pkt/ycs2Lf5OkX83P4MyXrQWVx+RgczSSRsVuHxyamKCUnKmnM1+2ElTY7MexkSbrC+uIh0OtVaJKThWiV8Mro28me/Vc70nGvHU8hHquAGmrbKoxIiHm9jEysngoDyqE6XVNKbwfISaIAQmKaplGO8voT56DRXrY05Ixf26NsZvzLcx52RiXqU4dbJPZoXWgopju7aAT02J3dHBR0/pBh4hkUYRBa7NDq0EF9stavuivfgmK2tDwsHhoNajAvj1SWn8WYrfqvL409E2HVoEK06Hj1K0P04tqjCo+H/aYbZPp0CpQeUwX4qEwvfgyubGT1IN0AXSvh9UYV4IKqw8hxkMBYfZDU7LZl1m/7JugIueHcOHGpsH8oFyh62G+bDWoNB0az1VFa0GhUlTHXC2KhPzNdGgNqBCm19XN5ej+j2woO0h7XjYqat++7ebOWYyMnu09yZj38WUcI55kkTjNWKfkzGZhvwMq9LsfCFm+XNSxRshWe05HP+Npt4A2sQTGXMlsU0zNf+UDMs5JhyPMD8XdHGkgVncrnjE3gIz5W2uMCAFz6qrOzguxiq2wvGw1qNBvNnC/i+oy7+HgvvnwaZuHRNzd870nGfN+zFZin2kPB7RbHyKjVC6KkyE/4mlXg9aLfoEx1zLr1BHrd59O8zK3lykQ3TQ0TZ7phxu+ML8PMubv7HXgojo9ZflITZA4fpa6HhYP5UGFfveD/79UqlJqrx75tGTMDCgnsAhj5kBZiSUYMwfKSizBmDlQVmIJxsyBshJLMGYOj4ip/wF9Pv6as2mm2AAAAABJRU5ErkJggg==" alt="QR Code" width="120" height="120">
+            </div>
+            <div><a href="https://edaine.github.io/disco-order-tracker/summary.html?orderId=73939">https://edaine.github.io/disco-order-tracker/summary.html?orderId=73939</a></div>
+        </div>
+        <!-- Embed another order summary below using an iframe -->
+        <div class="container">
+            <iframe
+                src="../summary.html?orderId=73939"
+                style="width:100%;border:none;min-height:400px;"
+                title="Order Summary"></iframe>
+        </div>
+        <div class="back-btn-wrapper">
+            <button class="back-btn" onclick="history.back()">&larr; Back to Search</button>
+        </div>
+    </div>
+</body>
+</html>

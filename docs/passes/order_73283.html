@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Order Pass</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f7f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 24px auto;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 24px 40px 24px 40px;
+        }
+        .back-btn-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 8px 18px;
+            background: #e75480;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .back-btn:hover {
+            background: #c7436b;
+        }
+        h1 {
+            color: #2d3a4a;
+        }
+        .pass {
+            border: 2px dashed #e75480;
+            border-radius: 12px;
+            width: 340px;
+            padding: 18px;
+            margin: 16px auto;
+            text-align: center;
+        }
+        .qr { margin: 12px 0; }
+        h2 { margin: 0 0 8px 0; color: #e75480; }
+        .info { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pass">
+            <h2>Order #73283</h2>
+            <div class="info"><strong>Parent:</strong> Priyanka Gurram</div>
+            <div class="qr">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAAEOElEQVR4nO1cbW6jQAy1TaT+JNIeIEeZ3GCPVPVIewM4Sm4QflYi8sr2DKSp0AAbtqXjpyrlw0+AZHme7ZlBhnVoaSURwJk5UNZiCs7MgbIWU3BmDpS1mIIzc6CsxRScmQNlLabgzJ/IxIgDQHu8IUB3AP3Bc4eIZzHRI8V5t9+5BrSKVRITWABB/10r+e0hnnIPdq0Rw2B3k3Gzr+8kZ27O7FK4wWPF0Gq4kTiEEpbEfdTKQtWznrkctIJjcOZ2zMOnK92hB6ivAO2pPzB0v3oEqIChe9YzyZk/mxmuMr5dJfpcJA6d3hGg7iGqoE2eORs03/QBztyeWYvEsaPeruAZRACpHuoQ9a6ppWc9czloBcfgzM2ZrSZcRxiysZcogM5y+nqtGM9ws7TsWc9cAVpDUjhzaz3E44X2CMjtsZKI9C5HgFEK1bzj7yRnbp7bX/VExq1aMvqU1kOQowaqexOF5/ZZUFE+xCwOov5yf8pJI43OpYrbfWgWqLQaYx9PTToP9USwwPMhGHmNcR6ovPoQA9wOSTEDYGgAuP0tXtMdQW+w/OEev5Oc+T+YKDmYDlkirIHfjgD4etGELTY8tGn2zGcuBC0lDHDm5mOZYByyuKnlmlaKTAWlAW2Ej2VZUGl5WXWnpOMtcSTTPuJNJpnGa/v6TnLm9nGossATe/RjSlbfK+7U0HcfmgMqS1OHJs4awsAgqvl2gMC3g+psblG0dCdlbGnBitje23eSMzePQ3V/P6oNCT4MyXysNiY7j0N5UIFjWZAComrqobXKqq5jiVr9yutDs0GF6iEYOvjmLzC4lM9jXAoqNA6B6ucYkSAOaNbrMBPvl80GFcKE6BGWvY9VoTSChdQgG7N896GZoNI0NacBbZQ9GoKSN5mbqYf5WDYPVAgTHhr1abTqPydsnAqN7kPzQEXVhzA0Ov/+CNye+tRVlYJQaG5yWvXcYsVoRaIve1ty5veuD4GmZNY0+5ihNalY7f2yJaAi5zFC6rmm6Ypwv1oxzcn3sWweqDwmS7iJS4DSYiB+Q5mib4sXda1HTPq//G0XgpYSBjhz6VppiAm+5vEcxfYDPA7NAxXChDuJ85jlaxtfk/lxUohJJvehOaBC9/1gvshMRVkWJKIIZWlZdCnZCyTItEbf92MeqCxmSEUiPNskInUaRF28GE11kuwpTTHa53euAK0hFb3vB8SthxDx1bJ8ZtuTSL0pXOIC2L1+53LQCg6Uzqw4BqPuxdK0tAlR2kDGx7J5oGL3jqmlvKgzGpt3VK/B8Ee2AdGFQSDbgHzZ25Izv7EP1eItnSwow6q3GbDDqjKQXoceYWik4fFlb0vO/Ma9DsO4rB7ulgWBTURLm6F5fWgmqNB9P/jDJiBsjmQn49E/PpOcmQHlDCbhzBwoazEFZ+ZAWYspODMHylpMwZk5UNZiCs7MYV/MvwhoREVHstpEAAAAAElFTkSuQmCC" alt="QR Code" width="120" height="120">
+            </div>
+            <div><a href="https://edaine.github.io/disco-order-tracker/summary.html?orderId=73283">https://edaine.github.io/disco-order-tracker/summary.html?orderId=73283</a></div>
+        </div>
+        <!-- Embed another order summary below using an iframe -->
+        <div class="container">
+            <iframe
+                src="../summary.html?orderId=73283"
+                style="width:100%;border:none;min-height:400px;"
+                title="Order Summary"></iframe>
+        </div>
+        <div class="back-btn-wrapper">
+            <button class="back-btn" onclick="history.back()">&larr; Back to Search</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -48,11 +48,11 @@
             font-size: 1.08em;
             font-weight: bold;
         }
-        .food-list, .drink-list {
+        .food-list, .drink-list, .face-painting-list {
             margin: 6px 0 0 16px;
             padding-left: 0;
         }
-        .food-list li, .drink-list li {
+        .food-list li, .drink-list li, .face-painting-list li {
             background: #f0f4fa;
             margin-bottom: 6px;
             padding: 6px 18px;
@@ -60,7 +60,7 @@
             color: #333;
             font-size: 1.08em;
         }
-        .food-list li span, .drink-list li span {
+        .food-list li span, .drink-list li span, .face-painting-list li span {
             color: #e75480;
             font-weight: 400;
         }
@@ -122,12 +122,34 @@
             return params.get('orderId');
         }
 
+        function sumTickets(orderRows) {
+            return orderRows.reduce((sum, row) => {
+                // Convert to number, ignore empty/invalid
+                const n = Number(row.tickets);
+                return sum + (isNaN(n) ? 0 : n);
+            }, 0);
+        }
+
         fetch('data/orders.json')
             .then(response => response.json())
             .then(data => {
                 const orderId = getOrderIdFromUrl();
                 const orderRows = data.filter(o => o.orderId === orderId);
                 if (orderRows.length > 0) {
+                    const { parent_name, face_painting_time } = orderRows[0];
+
+                    const tickets = sumTickets(orderRows);
+                    const facePaintingSlots = orderRows
+                        .filter(row => row.face_painting_time)
+                        .map(row => ({
+                            name: row.face_painting_time,
+                            quantity: '1'
+                        }));
+
+                    const facePaintingTimes = orderRows
+                        .filter(row => row.face_painting_time && row.face_painting_time.trim() !== "")
+                        .map(row => row.face_painting_time);
+
                     const foodItems = orderRows
                         .filter(row => row.food)
                         .map(row => ({
@@ -140,7 +162,7 @@
                             name: row.drink,
                             quantity: row.drink_quantity || '1'
                         }));
-                    const { parent_name, face_painting_time, tickets } = orderRows[0];
+
                     document.getElementById('order-summary').innerHTML = `
                         <h2>Order #${orderId}<br><span>${parent_name}</span></h2>
                         <ul>
@@ -148,7 +170,10 @@
                                 <strong>Tickets:</strong> ${tickets || '<span style="color:#bbb;">N/A</span>'}
                             </li>
                             <li class="category">
-                                <strong>Face Painting:</strong> ${face_painting_time || '<span style="color:#bbb;">N/A</span>'}
+                                <strong>Face Painting Times</strong>
+                                <ul class="face-painting-list">
+                                    ${facePaintingSlots.length > 0 ? facePaintingSlots.map(slot => `<li>${slot.name} <span>(x${slot.quantity})</span></li>`).join('') : '<li><span style="color:#bbb;">N/A</span></li>'}
+                                </ul>
                             </li>
                             <li class="category">
                                 <strong>Food</strong>

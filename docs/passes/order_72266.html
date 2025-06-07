@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Order Pass</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f7f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 24px auto;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 24px 40px 24px 40px;
+        }
+        .back-btn-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 8px 18px;
+            background: #e75480;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .back-btn:hover {
+            background: #c7436b;
+        }
+        h1 {
+            color: #2d3a4a;
+        }
+        .pass {
+            border: 2px dashed #e75480;
+            border-radius: 12px;
+            width: 340px;
+            padding: 18px;
+            margin: 16px auto;
+            text-align: center;
+        }
+        .qr { margin: 12px 0; }
+        h2 { margin: 0 0 8px 0; color: #e75480; }
+        .info { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pass">
+            <h2>Order #72266</h2>
+            <div class="info"><strong>Parent:</strong> Lisa Galloway</div>
+            <div class="qr">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAAEKUlEQVR4nO1cXW6kMAx2HKQ+MlIP0KPAzao90t4AjjIHWAkeR2LklZ2fgVmhBLa0pfH3kIbiT0Mkyz+xE0OwDz3uJAIoMwVMSqxBmSlgUmINykwBkxJrUGYKmJRYgzJTwKTEGpT5E5nGowLTyuPlbkw7GgN9eCWPfvbFX7sHuIvFUGYKlfvTdDyOr0D95U8FMPL/awIDYCeRWMzOt05U5uHMMdoXUR+wBP3lbgDqCUw7VkCsZWKqPuw3twN3cByU+XlM09YTUFffDDTXCoiGu6FfF35x2G/mAzfILqHMw33ZDOMLhcF659UMF+/ATrtOVObhOlTzXuMos8ENpvktvmzgN/4tnXadqMyjmb0kXBeOrq8VmPdrCIoafuR4yLRwd2nZR/3mDuAekkCZxzGBlmCL5AYJoqkTRRrskxhRd651ojIP1iFoZGAv1hDH1MBKM7AOcYhN5AIj8XlOWHUoDSzMDg08D9YnqMoEc70SAxUZqkNJYGm+bOI8PqrPYFlfLHs1ViTRpmCvVIcygeUxjXkTN8bZmAuFAKiTLcewx0gd1z++xdduBG4lRCgzu172wjnYC5l3FwXdOK2/BX1hY8SpG/SP3cYzrnMPcBer0LwMxFuxB5uFR+RCIQmsQ8KmviwPWAgTvEaw5nSz/0l4ZH2uxnZo8VZ1KAdYoA5RTOvdrlDI6L1KzdI01aEcYGn1sjvHPpYkAjKu4CGPNbeCSIY2vnIt307a+5EJLIQJ/8Q5kszLxrRE11HQ5/Y+MlI7lAYWZYeob6sJ+paNTC3W52YI6sm/hfHC5dZ7Rc4ifdnXojK/cTxUz0saYbN68kPcp3a2Se1QHrCwetnA3ioUyELVw/rNal9D8yVY1aFMYGn1MhuDnZh+LYMiX/DQeCgbWGTd3oYhFlmbWEhzO0Vqh/KBheVlMJ8F2OjLQkH/0UmkOpQElsc0cmjDe7BH/9CN94NCHfaXHDz7Dl+7EbiVEKHM7Jja+j6P6K18SjawSNid1nrZFmCR/UM2tsFGNzaEcFqKZs5AqQ5lAYut29ePfmo72zgKCVsMj861TlTmwUzDB+ylwcz1oDVXbjWrbyYc6bAUjrj6yOic69wD3MUqiQmzoxqxchacFy1n2gu7DVjovR8CORwtR8sERDJzB/FPvc49wF2sQvcYSQLmeKAs9A/ZuIvtuxw1HsoEFlkvs24237umR5OsQPOybGChdzZQ/+bVJXR8gLuTiPpWekT4CofufOtEZX4es7n62EjOcABfTBQio2Cluu/ztdnAfNEnKDOXWYeKWP/mszG5icgYfoydZ3JxwxNzO1CZP4oJi0praFKc7TZCbApZVD00HkoDC2FWMj7K9U8z8oMrgoR7iv7zN1GZCWBKYBXKTAGTEmtQZgqYlFiDMlPApMQalJkCJiXWoMwUzsX8C7JXVBrFTS9iAAAAAElFTkSuQmCC" alt="QR Code" width="120" height="120">
+            </div>
+            <div><a href="https://edaine.github.io/disco-order-tracker/summary.html?orderId=72266">https://edaine.github.io/disco-order-tracker/summary.html?orderId=72266</a></div>
+        </div>
+        <!-- Embed another order summary below using an iframe -->
+        <div class="container">
+            <iframe
+                src="../summary.html?orderId=72266"
+                style="width:100%;border:none;min-height:400px;"
+                title="Order Summary"></iframe>
+        </div>
+        <div class="back-btn-wrapper">
+            <button class="back-btn" onclick="history.back()">&larr; Back to Search</button>
+        </div>
+    </div>
+</body>
+</html>

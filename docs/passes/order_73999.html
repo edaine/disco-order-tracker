@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Order Pass</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f7f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 24px auto;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 24px 40px 24px 40px;
+        }
+        .back-btn-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 8px 18px;
+            background: #e75480;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .back-btn:hover {
+            background: #c7436b;
+        }
+        h1 {
+            color: #2d3a4a;
+        }
+        .pass {
+            border: 2px dashed #e75480;
+            border-radius: 12px;
+            width: 340px;
+            padding: 18px;
+            margin: 16px auto;
+            text-align: center;
+        }
+        .qr { margin: 12px 0; }
+        h2 { margin: 0 0 8px 0; color: #e75480; }
+        .info { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pass">
+            <h2>Order #73999</h2>
+            <div class="info"><strong>Parent:</strong> Brittany Holland-Leam</div>
+            <div class="qr">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAAEMElEQVR4nO1cUW6kMAx1DNJ+MlIP0KMwN+iRqh6pN4Cj9ACV4LMSyCs7JjDVogRaOkvj98FkIE8Q6cmxHSeOYB9a3EkEMGYMGO2xBmPGgNEeazBmDBjtsQZjxoDRHmswZgwY7bEGY/5GplOUAO1ldO7alzBdnHNX7iItwfW049wD3MXKiVn6n7rha/8AUHcjAFQfTi4EfTFA66RTMciPO+M40ZhHawj6C0D9ygKp3oFYNMT3HGuG6u5hEOW4IKSzjRONebiGZvAMBtV7Ce3TUBL0Ip+CJXXmcaIxf45ZdwURddx6K8G5R5nVBlAv6JB3JgPTu36CMY9nVkQkPpGgvbATDaKmgqjpnZOnRDSce5zbgTs4WTJbCbguetM9v/3x+WsnwdlzV5C7wujDsvt/7Q7gHpLAmGn+EC3u+GhsarUXCH/pxONEYx7GBGJAzQ4Q8OTVVIOfsmQag5pbDRTLLoLmXONEYx6sIRI/R/TC7rT61CIVuBWXPDUNJQFzs0MFqVTkngRn/EANz40x8uI61zjRmMfHZR+OiDiOZ6kwJJgntj4+Z6R/RVff887twB0cD2P+CNNxDCa5IInt6YUD/Oc3CdjUQMmi2Xe+cyNwKyHAmIfnqVtRRjWUbHMGqElWPcZS7nGymmew0dEihDvXONGYR/vUzTSDSbbRGyNtkXenxeP298wfSgPmpyEKkdenkAy8fGB6YHFZGjC/2J4kcG9uDA9pSBbifZ8zMg2lAPOK7WEK4WeboznGTq2PZht9BtI0lALMT0PAevGzWlhaJQnmNUV9m3w81zjRmMdriMFGJmSAvF5gNlAh72gaSgNmpqFqSlb7ectbJNAJTRPYYqpsvSwZmAkTVBHeiVa3Z5IUsPUJyyFTP9NQIjATJiwEojZnWuHwa2hVMEs+Z6RaMw3Fgfn5Q/QPcwPLB1PUZhpKA2bFJPaktUjRFy7yXV4bY9HIxjN6cVzbKEtqd/7aPcBdLIYxYyjl6gDKAaDqeJVMqhffuUV+IY3apw6crZdtBWZbxwhzkogmR2kuTrO5LB2YG7PwXpDs5pg3A9GL09IhqdjXIqL7f+1m4HaKwpjb4jLQAF9X60nvfYLZoTRgbmuuikW2UdLW5FPUN+ISmIaiwEzP/SDqRq5HG3lTYkFSwqj1sRyS1VzWaOd+pAEzPffD+TMbLnw0Q89ikotAimQfuazxbl+LxvzP47J6zlPzVYs9aLk10dbLNgBzZdZz2Uf/h3dIT1uFQrmszWWJwGzPjoGC/FlDdcO7pqX1OnLGWhKMsn3oa+9EY/5KDVWslh6m46tgLMMZVoxCz7CqG1XY2caJxvyJNVfQYsZ5h8ewrB8Kq/qWH0oEZnruBwEM81/yQvJ/5tYX34nGjABjHVZhzBgw2mMNxowBoz3WYMwYMNpjDcaMAaM91mDMGM7F/AvoIRrw4nJspwAAAABJRU5ErkJggg==" alt="QR Code" width="120" height="120">
+            </div>
+            <div><a href="https://edaine.github.io/disco-order-tracker/summary.html?orderId=73999">https://edaine.github.io/disco-order-tracker/summary.html?orderId=73999</a></div>
+        </div>
+        <!-- Embed another order summary below using an iframe -->
+        <div class="container">
+            <iframe
+                src="../summary.html?orderId=73999"
+                style="width:100%;border:none;min-height:400px;"
+                title="Order Summary"></iframe>
+        </div>
+        <div class="back-btn-wrapper">
+            <button class="back-btn" onclick="history.back()">&larr; Back to Search</button>
+        </div>
+    </div>
+</body>
+</html>

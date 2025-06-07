@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Order Pass</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f7f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 24px auto;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 24px 40px 24px 40px;
+        }
+        .back-btn-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 8px 18px;
+            background: #e75480;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .back-btn:hover {
+            background: #c7436b;
+        }
+        h1 {
+            color: #2d3a4a;
+        }
+        .pass {
+            border: 2px dashed #e75480;
+            border-radius: 12px;
+            width: 340px;
+            padding: 18px;
+            margin: 16px auto;
+            text-align: center;
+        }
+        .qr { margin: 12px 0; }
+        h2 { margin: 0 0 8px 0; color: #e75480; }
+        .info { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pass">
+            <h2>Order #73161</h2>
+            <div class="info"><strong>Parent:</strong> J O'Sullivan </div>
+            <div class="qr">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAAEQ0lEQVR4nO1cf4qrMBCejEL/VOgBehR7s+UdaW+gR9kDPNA/C8o8ZiapdnkSG9btupmPxU1jPjQwzO/oCNLQYSIRwJgxYHTFGowZA0ZXrMGYMWB0xRqMGQNGV6zBmDFgdMUajPkbmc6jBHcdliPowq1wg0cvftsUYBKLYcwYSv3XtHwdzkDdhcDxD+I/B1CMsuJhdLx9ojF3Zw53/TJ4sXKunhxANbJGKoFYykRBfdkznwcmcBTG/D6mu1Y3R211c9B8lEDUT47+1Hxjt2duBz6x9hHG3N2WzWjeTwQwyKXwxqvpa2/ADrtPNObuMlRxrnEIsw2x5LyLLev5jr9Lh90nGnNvZicBV+0nxQECgILEoMlPd4VJw7KvemYCMIUkMObeeog+T1cjUFeDo+6i9kzDtK95JhrzFzIdO8yaEAJgC8Zoevk3qYvtMXvXR9xnCjCJlRMTSNBWrG4qIlVBLY8aGr0g8UjnFoxj7RONubcMEUsJ9QV58ekLlpdCRcpLE4lcBZgMRYH5xfYOODUEMHkfqbvKhX8NtTpDdB8dbZ9ozN3rZbXEYCdyb6qMbhzW30IMxsqIQzfozB/aDszKlsHdUIkZk7qGuEckRo69JV3n58yWbQFm5g/1s+SIZ8Q31CkKc3rXfOrtwMz0UM+2LIRf1Ep6kT1pFSnxuBdhmsnQFmBuPvXkqHOseIZy5AoHzxUUHCK5cSbo6mK03o+NwEyY8ODn+CRRsG+wsGDBZfKekemhODArJrWcne7cSZ0iqY1pNMYI0sQZa9FIh91nCjCJlWWemhTebgk0d+1zjH6JONumhzYBs2K6tw/pmOZ2RU0NsZRoExFfBNJezXmkV79tCjCJxTDm1rr9wL6y5qkZg+MY7CyJaXa2uZ2IppIvYcmx9onG/BZb1sKySjYXXoktWCjjF5Zj3ArMLC4D9ppD3T6404UXKU0I8YxksU2GtgGzYpKG8OwP0cfJp601Gqtui54i+lNPdr5sKzDLPDWFFLWUOSQk06pHyA9ZvewJYIb1MhKP59EzakIPWiikmS3bDMxPhsCLSlA3LEjUfq6X3fXVsfaJxtw7P+QufDJRj7NOfDyRO6u5i9of6SgoHHEN3daH3GcKMImVZS+sh+qhWSM1i5H1wj4HzCrH6PwvPtg6lKMkFaF5L0fgEWktfziPr35bNObPZTY0F8NGcG+qkW5a9XhoiBXT9uK3TQCmkATGjILEgmn4JQ5zCM6W/bF0FyTLU28HZvrNBuLvD+loPs3R1X/LcMyDK2ft8faJxvw+ZsMH7F04wwFSree5OV3kk9o/4m03A7cv/QRjbmVWoSLWcZQvTtGVP1/lLsueIt+c9sB8HmjM31pzhccia3Cni0Xxfq56mD8UB2b63Q/6/6UQkQrfKXrZ26IxI8DYglUYMwaMrliDMWPA6Io1GDMGjK5YgzFjwOiKNRgzhlf41P8A5z74oxePtHkAAAAASUVORK5CYII=" alt="QR Code" width="120" height="120">
+            </div>
+            <div><a href="https://edaine.github.io/disco-order-tracker/summary.html?orderId=73161">https://edaine.github.io/disco-order-tracker/summary.html?orderId=73161</a></div>
+        </div>
+        <!-- Embed another order summary below using an iframe -->
+        <div class="container">
+            <iframe
+                src="../summary.html?orderId=73161"
+                style="width:100%;border:none;min-height:400px;"
+                title="Order Summary"></iframe>
+        </div>
+        <div class="back-btn-wrapper">
+            <button class="back-btn" onclick="history.back()">&larr; Back to Search</button>
+        </div>
+    </div>
+</body>
+</html>

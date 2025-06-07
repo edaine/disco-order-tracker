@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Order Pass</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f7f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 24px auto;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 24px 40px 24px 40px;
+        }
+        .back-btn-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 8px 18px;
+            background: #e75480;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .back-btn:hover {
+            background: #c7436b;
+        }
+        h1 {
+            color: #2d3a4a;
+        }
+        .pass {
+            border: 2px dashed #e75480;
+            border-radius: 12px;
+            width: 340px;
+            padding: 18px;
+            margin: 16px auto;
+            text-align: center;
+        }
+        .qr { margin: 12px 0; }
+        h2 { margin: 0 0 8px 0; color: #e75480; }
+        .info { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pass">
+            <h2>Order #72899</h2>
+            <div class="info"><strong>Parent:</strong> Jayne Dawson</div>
+            <div class="qr">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAAEP0lEQVR4nO1cbW6kMAy1DVJ/MlIP0KMwN9gjrXqkvQEcpTeAnyOBvLITEqYrlJSWndL4qZoyTJ4gkuU8fyTIsA897SQCGDMFSo7YgjFToOSILRgzBUqO2IIxU6DkiC0YMwVKjtiCMX8iEz1qgB5rwKveHeVqRNSv7kpxPe0894B2sQpktiwY9OqGADAjXpsbcgcV8yui3Kt0EJ95njtAe0hFMsfF3eBFgi6sgTvxQ3iZEdqhcpbjXNXj3/bjoB0cB2N+nDk+MUAzAfQvEzAPFatdcZdk5oKM+bOZ7bDYS/smfuhFlrZmWjTSIc/MBuUPfQdjHs9smNeeRuW0CqChYu5GFGUEwMzT1z3z46AdHAdjHs7sNeASKSTA30EAXcWa5CteRWcLvuqZO0B7SApjHses9XNV8OhfbsgihQAkLtOvMMovDZ94nmTMw5jgwnVRQS56dwta4+U0tDyJPKrWQxTdueZJxjzYhljtRaMx1dQ+U8RBI4lxObtaGGZDSVBhfoiDVnY+J+YTK/l/54yccZ1rnmTMg/UQwPgs9jIv8mgEwLYD4P6XWM14AZXSLH94xnmSMY+P7W+oMRh3zQ2hl6Ti60UitDcN2LxQ0qLZlz3z46AdHAdjHh6X9WoZzVQveeoBEBpxS81UM4zPsoLNqH7o088kY/4oJniFLGLHI8RgjeghTT6q2FbJJPdMD+WBytLUECMvMZVVSNbcKW5X3zcbygIVxWTWjg/XMCRrmZTxf0s0xsOM/CplfI33fRHksW+7B7SLJTBmErwO4YOTiTnGwXsfn210rsr8UA6oMBtqNFntRVEsrXLnfgiDLT+UDyrPD4FWONTTuBr9qrihCewl72g2lAcq0IZa52SWgoc3pGpR3HcJbLOhNKi0tWxaXXkBpCa1FMi89zE9lA8qhAnRQKIziosXeKGkykjzQyHyP9c8yZjH1+0heB9f14h7ODiWZf2H2VAOqLCaazPVsBQ8AFuWMsd4AWi7uUaAauIeK0a997i3JWN+47Vs0H6z0El012PNLsDXlKPlqfNBRfYxKpZALCppdhnrIJTMhrJAhTDhLuiKlbNwD3xDrEN0RmZDSVB5axmHBuqlWs9ebL+D+aE8UCFMWJfJ3lU9Yhk/RG1qXOaH8kCFnvvBHczuzAZdxlBaGL1GGmvZ+2rnfmSDyortW20WGp8B22EG7i/VJA0g4D8Ufg9+zWecJxnzv8RlbVjB3H571+wRDovRe1YvyweVymzfxDWpIY1PskPaF15ju6ytZZmgQpj1P3d0S7S0K7adbJMWo2n/yCFEriFfT7h61NuSMb9zrYPFcpYdHlLr4LCrDKTWoVfYdlLweNjbkjG/rx7yiNvqBaEh1qWtQxHE8kN5oELP/eC7Q0DYGZL7Eq8++UwyZgKUGrAJY6ZAyRFbMGYKlByxBWOmQMkRWzBmCpQcsQVjpnAu5l8R2TPhEpeTkwAAAABJRU5ErkJggg==" alt="QR Code" width="120" height="120">
+            </div>
+            <div><a href="https://edaine.github.io/disco-order-tracker/summary.html?orderId=72899">https://edaine.github.io/disco-order-tracker/summary.html?orderId=72899</a></div>
+        </div>
+        <!-- Embed another order summary below using an iframe -->
+        <div class="container">
+            <iframe
+                src="../summary.html?orderId=72899"
+                style="width:100%;border:none;min-height:400px;"
+                title="Order Summary"></iframe>
+        </div>
+        <div class="back-btn-wrapper">
+            <button class="back-btn" onclick="history.back()">&larr; Back to Search</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Order Pass</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f7f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 24px auto;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 24px 40px 24px 40px;
+        }
+        .back-btn-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 8px 18px;
+            background: #e75480;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .back-btn:hover {
+            background: #c7436b;
+        }
+        h1 {
+            color: #2d3a4a;
+        }
+        .pass {
+            border: 2px dashed #e75480;
+            border-radius: 12px;
+            width: 340px;
+            padding: 18px;
+            margin: 16px auto;
+            text-align: center;
+        }
+        .qr { margin: 12px 0; }
+        h2 { margin: 0 0 8px 0; color: #e75480; }
+        .info { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pass">
+            <h2>Order #73725</h2>
+            <div class="info"><strong>Parent:</strong> Julie Diedricks</div>
+            <div class="qr">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAAEQElEQVR4nO1cW26rQAy1DVI/QeoCshTYQZdUdUndASylC4gEn5GIfGXPDEl6L5oJKjeh4/ORBPBRGMk6fg0gwzr0tJIIYMwYKGqxBGPGQFGLJRgzBopaLMGYMVDUYgnGjIGiFksw5m9kokcJ2OphfUZsR0TowyU99L8efLdrQKtYAmPGULqvppPP8RW4r48lwPjCCBUDAhSTWtz82t86yZibM8dZX8YXV6rxR31GgGoCbMcSWLxMperH/vN+0AqOgzE316EZCNUA3L8dEZqvEhjgXHJfF4DNJ+x4nWTM/+ZD0HyWkxejMQSvZqjxB/+TjPkrfaiSADZK77Au3BlsPjWWDXLFX+XdrpOMuTWz14KrFh0aAPB90LMFa0DTfAhbOLuy7Kf+cwVoDUlhzK11iL+friap0AC5P7h4Jia843WSMTdjAgug0Q+nPiJGenYA4E68idk7ksQ8Z8zdvtZJxtzYh7gT31D16aBg/YBGPEf9Sn55kwtjX+skY27tQw5D4R3J/RJHkkPvTUGvHMyHoqDcmGdEPJxQJUi7jdpU5G6UjCn0GLmT+ccT3O3doPspHsZMnpe9SA32wvg+nJG76iRl/Sn4i4iRlG7Q1+BGavtc5xrQKlamObVCI5im05o/s6TTIbHWlMmZWSxLAGXCBO8RmkRf8me9IEmRpkI+2b5l7GudZMytdQi0GrvUZa6En7z7qBhpge/dzHwoBZRXj7FvdU+HTMmqQQaverrgkBBJhTa+skxCJtv7kQjKTYfAdYBCVPNJEc8RLNT2PjMyHYqDMtOhNwlSo0hMdUQGOCFDNYVJyFj7XSBOkR52t2TMZ+5TTzeKNFf0EHqMTqVUm0yH0kC51faTJMwhnYY5qkGYevgeo1b+5kNJoMx8aFDfuJmvfkuKGjfwsHwoGZTfzJW/C48W+Bq8tKIPe4rMhxJBufUYYVakoDlw5VLeJOiV+VAKKL8eI4iDXE0zpE/Nkmzf5EPWY0wG5baf+hiGrCNKMf86oR42+nDHWAM27J/6eODdkjGfN5axS3uuBx5BmyCEtrCxyGJZIig3ZsHY3mz2cMHr43AZwfptH7b3IxGUVSxDiVsSwVyPEZsvCWga36AEbLrL5EyeF3rY3ZIxnziWBbixmG9R8zy8n7ftz4YWy6KgTN/7oXA7YCWdBtm4yPzlN8TufZ1rQKtYGTIb1ZbQk8bWDTxOErfmIavbEOtfL7PTda4ArSFl/d4PlFcP+b2woS7Ddt5PfTWR3ec67wet4OTNZKdD+iDHiPKYh3+LzKXHaDqUCMqECT6THv4asl4qevbn9Kr1h5JBmTGrMBHrD74a0wiGKIdzUqQvbniCu70ftILjYMxEHfK4HrK6ih7mMf6sSDYvSwRl+t4P/vdHoS4V3lP0sLslY0ZAMYNFGDMGiloswZgxUNRiCcaMgaIWSzBmDBS1WIIxY3hETv0H4CoS1DTNySoAAAAASUVORK5CYII=" alt="QR Code" width="120" height="120">
+            </div>
+            <div><a href="https://edaine.github.io/disco-order-tracker/summary.html?orderId=73725">https://edaine.github.io/disco-order-tracker/summary.html?orderId=73725</a></div>
+        </div>
+        <!-- Embed another order summary below using an iframe -->
+        <div class="container">
+            <iframe
+                src="../summary.html?orderId=73725"
+                style="width:100%;border:none;min-height:400px;"
+                title="Order Summary"></iframe>
+        </div>
+        <div class="back-btn-wrapper">
+            <button class="back-btn" onclick="history.back()">&larr; Back to Search</button>
+        </div>
+    </div>
+</body>
+</html>

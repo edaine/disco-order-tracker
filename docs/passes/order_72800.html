@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Order Pass</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f7f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 24px auto;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 24px 40px 24px 40px;
+        }
+        .back-btn-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 8px 18px;
+            background: #e75480;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .back-btn:hover {
+            background: #c7436b;
+        }
+        h1 {
+            color: #2d3a4a;
+        }
+        .pass {
+            border: 2px dashed #e75480;
+            border-radius: 12px;
+            width: 340px;
+            padding: 18px;
+            margin: 16px auto;
+            text-align: center;
+        }
+        .qr { margin: 12px 0; }
+        h2 { margin: 0 0 8px 0; color: #e75480; }
+        .info { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pass">
+            <h2>Order #72800</h2>
+            <div class="info"><strong>Parent:</strong> Keyonie Burke</div>
+            <div class="qr">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAAEOUlEQVR4nO1cXW6jQAy2DVIfQdoD5CjkZqscaW8QjtIblMdKRF7ZngHSCs2ELWnZ8fdAQvAnMpLl/xlk2IaeNhIBnJkCJSXW4MwUKCmxBmemQEmJNTgzBUpKrMGZKVBSYg3O/B+ZGFAD9K3+ckOAoQY8D4h4FhH9pjgfdp1bQJtYJTFr++iuch1+AXRv07PmHRmGaoQe9b4a9QOPuE5y5u7MIZobbG9ia17Y7BC2N4TurbL0zUzVV73zcdAGjsGZz2QOoiXNO0J/GoH5rWLEFoCvO74zF5Qt+RHOfCqzYtOX7lXs0OkdAZoRQhS00zszQbmCn+DM/ZkNR83ReEjDadEmsUN8HRD1KTOPx17n46ANnCKZvSZclpIB4O8pADqLNsktnkEDJcQjr3MDaAupKGat10XDo28BWUIhy8v6kyZn8qThA6+TnLkbE1gQM3pxXuKt5FbdGHQ8Sjhd3YuI4zvWOsmZO+sQsyhIp9okSmOKpKpiUhIUNZqmRYbrUBJUmB1i5piSxUhaH0C0TQtjZMp1rHWSM/dn3nBOukJzQzRMrE9M0/RW9eqL3vkw6HFKgDOfwkTpiFkkfZGiolzw96smbKFmFES+7p0Pgh4lTHDm7nlZj5qcjTXA8CKuTdpiza2W8mLN1kjjG/IihTvWOsmZe8dDIMGOQntjElhr3RGs+CgObf7N46E8UGl5WRVTsjlq1uemNLE6rQ88L8sDlZaXjeFWouaY24+W5Yc2hyqX6ZrrUA6otBpjJS5rMjKmNNUimQ/VRi0SuQ5lgUqLhyAYmblYDVMyP82lLT3dsdZJznxOTN2opQkqZfoCi/5HrDu6DuWBCtOhJjg0i4y0XzY7NIgF7FmRXIfSoEKYEDQixjnLFH72YLP18XgoH1QUE21gSMdghxqYX7UcXZmB0uo0X2TQemqCHHOdW0CbWMXG1ByLiprRByc3Lg1UuLgdygEVxWRVmosMKeoUtUwv6l4PEIemuzn4Evd6fPu/3QLaxBI486GYmqeWxt2MNVuCH22Tx0OZoCLnGCFkYzZENEXS5tps/Mx9WTaoECbcJV0fumQcM/pFv8zzsmxQgTrEsRkWu/UchmQ/wO1QHqgQJixCnHkq1roeVrYOJce7rM11KAdU6LkfrMmZjsaKG0PZqBgqRZKSdTLW6PWhPFCh536gfHLfyhkfg97IMKNCLFJ/krHGb/u35Mwfnpd1cXdrdF7j3RC+PfB+WTaoVGYnKfxFjvy4Di/iy0Lj1TI0gfuyTFAhzPrTL40O5teA3VW2SYvSdH/kECIbyJdjQL7t35Izf7AONaItQ9jhgR3fZDdHG888g2rUb9hdK/Zz0DJBBfZcYbGtXmCbo6fZxjla8ngoC1TouR98dwgImyLZzfztH99JzkyAUgKrcGYKlJRYgzNToKTEGpyZAiUl1uDMFCgpsQZnpnAs5l9CmDF0F+D80AAAAABJRU5ErkJggg==" alt="QR Code" width="120" height="120">
+            </div>
+            <div><a href="https://edaine.github.io/disco-order-tracker/summary.html?orderId=72800">https://edaine.github.io/disco-order-tracker/summary.html?orderId=72800</a></div>
+        </div>
+        <!-- Embed another order summary below using an iframe -->
+        <div class="container">
+            <iframe
+                src="../summary.html?orderId=72800"
+                style="width:100%;border:none;min-height:400px;"
+                title="Order Summary"></iframe>
+        </div>
+        <div class="back-btn-wrapper">
+            <button class="back-btn" onclick="history.back()">&larr; Back to Search</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Order Pass</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f7f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 24px auto;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 24px 40px 24px 40px;
+        }
+        .back-btn-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 8px 18px;
+            background: #e75480;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .back-btn:hover {
+            background: #c7436b;
+        }
+        h1 {
+            color: #2d3a4a;
+        }
+        .pass {
+            border: 2px dashed #e75480;
+            border-radius: 12px;
+            width: 340px;
+            padding: 18px;
+            margin: 16px auto;
+            text-align: center;
+        }
+        .qr { margin: 12px 0; }
+        h2 { margin: 0 0 8px 0; color: #e75480; }
+        .info { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pass">
+            <h2>Order #73568</h2>
+            <div class="info"><strong>Parent:</strong> Erin Anderson </div>
+            <div class="qr">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAAETElEQVR4nO1cbW6jMBAdT5D6E6QcoEehN9gjVT1SbgBHyQFWgp+VQLOa8dgklZAdtmlCPU8qccFPYOlpPjwDjmAbetxIBDBmCpicsQZjpoDJGWswZgqYnLEGY6aAyRlrMGYKmJyxBmP+RqZTVODeRh40s5MR9OGSXpDRg592C3ATi2HMFCr/03Z8HI9A/etUAYwv5KAmcACHSWZcjfa3TjTm3ZljtC/jC6dqs6OPZnYA9cS2qQJilYmp+rZ73g7cwPEw5t3tUISDegDq/wzg2nMFBDBX1DcHcO0JdrxONOaPaQhgrCY5EIzBebVD477xnmjMX6mhmh3YyJHR6ejPuPYkvmzgK3qVdrtONOa9mb0kXI2edO+D/B4I2KFJPOTeYPZp2XfdcwNwC0lgzHvbIVpOcOzjz/UNOE7T9N9rK7S3daIx78YEYkArB7Y+coCazw4A1NUTT1EhyQWZTN2+1onGvLOGiAb2W0Eq1EH4txVd0cRqIm+IPME0lAQWpiFic7MYHpaUxENQs5BETcFemYYygaUxD+RciH1kt1E2FakbOWIKe4zUcf3jCZ72ZuDtFIUxs+tlFUB7fiH3PhyIuvqT0/rPoBc2Rpy6Qd+owva5zi3ATawifZkCWtYQLYE1TTGw5njInzNflgMshAmqCAmivXJYNHJBgiI2QfHcJWNf60Rj/oSGSMwNp19qkSRNC7m9T/A1TTMN5QBLq5fNjqRkzyoJfR4HCgERW6TxSLwDOVnvRyawsD3GQUbBZcWgiKIHC7m9RkZmh9LAsmodPXee9W8SAA3cAPLpCGruRpMyx9hoF4i3SA97WjTmM8dDEDKvsDW0hNMQ96m9bTI7lAcsiuneKbYr1kTujfXSSUejb2tkSHt1Y3YoG1gIs5IjScAMwB4M5grak+Og6ChuzFHvuJ2I5ooPPOVRT4vGfPI9xs4XyKJD8zV6LaTp7hHvAZgvywOWVreHIJorvYBvRAshkyZspqEsYFnMXuIcrq9qxBNz+1qKZtwVy4Ljdz2sXpYJLIQJSx1M0y8vn9j2MUjVI+wPWb3sBmB5PWikyomRUayhXVQ9zJflAwvtYyQumi1Cou5rvSyGR/taJxrzzrm94z/Zjvbg3J6g/svnK3Btt1TONDLa2zrRmD+S2zNC2KPGCJaR9cLeCiz0ux8CDaLPoQ2Wwmjv69wC3MQqkNmKbeEc7IM/IOMcVzh8Wh+LG74hVt5WfPDTbgBuIQmMmQR5D+Z3FjWjD1vUdHlQWF6WDSxUQxT7GC9r9HXoj9UXz0xDOcBSme1ZYyN5hwOkWu8jo7BdpJ0hT/G02cD8qV9gzFxmHSpi/auYHm4F4c9XuVdxYxoUyYcbvjBvBxrzVzHB+zJFiJ9jXQO05hrego1VD/NlaWCh3/2g6xHpwRdBwneK/vOeaMwEMDVhFcZMAZMz1mDMFDA5Yw3GTAGTM9ZgzBQwOWMNxkxhX8x/nuIeo2M+0AsAAAAASUVORK5CYII=" alt="QR Code" width="120" height="120">
+            </div>
+            <div><a href="https://edaine.github.io/disco-order-tracker/summary.html?orderId=73568">https://edaine.github.io/disco-order-tracker/summary.html?orderId=73568</a></div>
+        </div>
+        <!-- Embed another order summary below using an iframe -->
+        <div class="container">
+            <iframe
+                src="../summary.html?orderId=73568"
+                style="width:100%;border:none;min-height:400px;"
+                title="Order Summary"></iframe>
+        </div>
+        <div class="back-btn-wrapper">
+            <button class="back-btn" onclick="history.back()">&larr; Back to Search</button>
+        </div>
+    </div>
+</body>
+</html>

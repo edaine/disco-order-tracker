@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Order Pass</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f7f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 24px auto;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 24px 40px 24px 40px;
+        }
+        .back-btn-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 8px 18px;
+            background: #e75480;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .back-btn:hover {
+            background: #c7436b;
+        }
+        h1 {
+            color: #2d3a4a;
+        }
+        .pass {
+            border: 2px dashed #e75480;
+            border-radius: 12px;
+            width: 340px;
+            padding: 18px;
+            margin: 16px auto;
+            text-align: center;
+        }
+        .qr { margin: 12px 0; }
+        h2 { margin: 0 0 8px 0; color: #e75480; }
+        .info { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pass">
+            <h2>Order #73445</h2>
+            <div class="info"><strong>Parent:</strong> Chloe Milligan </div>
+            <div class="qr">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAAEUElEQVR4nO2cUW7bMAyGSdpAHx2gB8hRlBvsSEOPtBvER+kBCsSPBWxwICkpaTFDtjdvc8XvwY1b/UgFEBRFUkKGbfS0UQjgyhJUHDGHK0tQccQcrixBxRFzuLIEFUfM4coSVBwxhyu/ohIjLUB/mhAAJsTL0AJeBkS8yBD9pFwOO88t0CZVTcrWfoSrPIdngHCbAOWVAd6RYWhG6MWqAJpRf+AR50mu3F05JHeDp4b5BZ/Y/BCKWwq3xrZv5qr+1HeuhzZoDFfu7oceGMTPdG/I/XlsGYbnEQEaYBiOPE9y5d9ThlvDzDf59Cp+6PyOAN0IMQra5TsXQ8uHfsKV+ys7ZtaYqD+PElhLEA1qTQ3zdUDUvzLzeOx5roc2aOpSAgvppWGLfX79gEgQyfVY8yRX7hwP8eOvJg2FxDe9I/cnkM2Z/L7jA8+TXLm3HwrmZGTx4hE0HtJlDIK8Xs1B3Ye4H1oCVWVDrHGOrlF3k7IlCxQJirpsXG5Di6Aq/VDEIukYKDXRN92dkcdDy6AK92VspqJbsvhg8T4AWvWw1xyAH3Oe66ENmkqVkxTInlhzQfxyAnvg91epkEnu2oxrQDz2PFdD6yWVKSFGNyn5ExNC6m7UBVkUlIPtjK9lRag2ZcNaDLvX6C1dBOKb+vN7rqbFRe6w81wNrZfU6oeatPPSTHROW4N4JNngG3nr5n6oDFW2L+O4Obtbk6WGOMXZsYZmOSO3oSVQfXt7zvFQ/EOucJiFqTWZq3IbWgLVVi9rrCxmfiiXVlmj65w9is7IbWgRVJkNdfERE0LZXiCblDWFpIXPbagMVWhDIRXIUmQEeWmLDupuSG5DZai2PsapjQkhoT8zYLidtHcaNT7CwAAsu3w+4jzJlfvbUCO5oGczIraGWGi0DXbE8OME3J/exMzEmq7Hmye5cmcb4v6iXdRaG3vWFHXLAJopehPHo25pkvMf0+9/J7nyKyqDxjiv+KF3WpLVEhlpAlvPemj19d//txugLSLFlSVafSJ0N3mMLcBg65a8MujRMu6/3SQemswjHXKe5Mr989SjvMTyfEoScdzHP/Q25l4135cVodry1I1V620LH6tknHb0D/Uyz1Mvhuqrl3FOQqdsI8fffcL90DKoEiU8tATdq6+21ZfamFVfPxqX+6FlUKX3frCcR7RjQbKMofU2WvaolbOvfu/HYqguZUhrGeI59d/r3h5Ar5IRxCPJwbPYWHTIeW6AtoiqPdcRUtuH2Uts9uDHo4leL1sB1aoMWm4ddFV7YjvNYT3W6pvSgY//5L9dDC0f+glXrr87pot+B8M11lcx/JBLiCzBKNeAHHCe5MrdbagTaxkkJ41SZOVJrh46pTvPrPqqdtWw34O2EKr33g9IpGNBsREtR0ueH1oGVXrvB3+4BITNkOzl/uk3v5NcWYBKA2ZxZQkqjpjDlSWoOGIOV5ag4og5XFmCiiPmcGWJYyl/An63Fj+ctFqoAAAAAElFTkSuQmCC" alt="QR Code" width="120" height="120">
+            </div>
+            <div><a href="https://edaine.github.io/disco-order-tracker/summary.html?orderId=73445">https://edaine.github.io/disco-order-tracker/summary.html?orderId=73445</a></div>
+        </div>
+        <!-- Embed another order summary below using an iframe -->
+        <div class="container">
+            <iframe
+                src="../summary.html?orderId=73445"
+                style="width:100%;border:none;min-height:400px;"
+                title="Order Summary"></iframe>
+        </div>
+        <div class="back-btn-wrapper">
+            <button class="back-btn" onclick="history.back()">&larr; Back to Search</button>
+        </div>
+    </div>
+</body>
+</html>

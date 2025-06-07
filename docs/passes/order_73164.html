@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Order Pass</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f7f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 24px auto;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 24px 40px 24px 40px;
+        }
+        .back-btn-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 8px 18px;
+            background: #e75480;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .back-btn:hover {
+            background: #c7436b;
+        }
+        h1 {
+            color: #2d3a4a;
+        }
+        .pass {
+            border: 2px dashed #e75480;
+            border-radius: 12px;
+            width: 340px;
+            padding: 18px;
+            margin: 16px auto;
+            text-align: center;
+        }
+        .qr { margin: 12px 0; }
+        h2 { margin: 0 0 8px 0; color: #e75480; }
+        .info { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pass">
+            <h2>Order #73164</h2>
+            <div class="info"><strong>Parent:</strong> Rebecca Moore Viterale</div>
+            <div class="qr">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAAEG0lEQVR4nO2cXW7bMAzHSdpAHxOgB8hRnJsVO9JuYB+lBygQPxZwwIGkZDvtDMnevNYTfw+JE+uPRADBD1EyMmyjo41CAFemoOSIJVyZgpIjlnBlCkqOWMKVKSg5YglXpqDkiCVc+T8qMVADdFgDXvvpBRGvMkSvlOth57kF2qQqSVnbW9PKa/8M0PAdAU7vyADy0lcDdKiDqkHf8IjzJFfuruyju8GzFF34xOaH8HxHaG6VlW/mqv7Wb66HNmgMV+7uh2b08tXpDbm7DDVD/zwgQAUM/ZHnSa78l8qKmW8S317FD13eJbQNELKgnX4zE8od+AlX7q88MbPmRI2YT3eWJNqsqWJue0S9y8zDsee5HtqgKVLZacElqZCAL69PIQG6SlL0cqsYr3C3suzr/+0GaItIcWVePsTTF90ZpBqTSynO5h/5wPMkV+69PnS1xZ8auD1ptLojt/0T44sELwltVrp5XbYCKkQJrLRQMTQ8gKbTlvY0dkORpOg03ZUbx5onuXJnGwIxHzWV8J1k0noDNLEW4zIz04LNbSgLKk/Jk6kIWsyzhTbtethHtatv8G9XQmsFI65coURJijST1gSIf0iB//KqBZvEsmnIR+VKyJX/Zz4EEqOGhzCmLsiyoBjQJjyWJaHSlBVPISu6m8ryIegu77NumvftM6HCcupbrMtmhVi8ihl3TKfdD+VBZdkQSK9Du2TmfSSMWWjjYFehh2a25jaUA5XmhyAUXVq92w21l1jMBy+l6ZHbUBZUnh8CMyT5cgxe/MmufH0oGyrMhiBEMPM0U/CCuMaoYSwuSLoN5UCF+iFQFzR6JNaAFlJsDW3BkNyG0lAhyjpe3GuW/j125zfr0WNzO+veadlZDYCN3Jcqn484T3Ll/v0yIW6bjrvRqlj0W8Ydlhw9lmVCZe0f6rSDYVYSEmgGkG0f5njULd3l/Mf9K/8tufI750NDSIAk7QlbPMb0aJ4PeV2WDZWYU7MSQ9a4x5qtwPd+2UqowF4HxAZZcEZTovS7zWnHmie5cv+cepgtDc3cUvuxX+br1NlQeX6Irbkxts8kgnFYaHzA/VAeVIgSZinOGLxCaIvL1rOmmfVm3YayoNJ6HQ9HXIP5cMiRHleK3A9lQmUpG1tjlA1maj69nFEct8Ya4pG6y5gyHXKeG6AtolL3fsDkaZSQZ/P8aKL3y1ZA5SqrcJZMzyhex6NCjwc+vs2/zYRyB37CleufHXPS4FUDNm3or2LzUx5CpC0PGEPbseZJrtzdhk5iLX3snDWttPF769sLlTyESKyprdifg5YJFVqXwfjMs+lYEISCLd7wuiwPKvS5Hyzd+vEjmyHZh+nqD3+TXJmAUgMWcWUKSo5YwpUpKDliCVemoOSIJVyZgpIjlnBlimMpfwHsux98LDeENAAAAABJRU5ErkJggg==" alt="QR Code" width="120" height="120">
+            </div>
+            <div><a href="https://edaine.github.io/disco-order-tracker/summary.html?orderId=73164">https://edaine.github.io/disco-order-tracker/summary.html?orderId=73164</a></div>
+        </div>
+        <!-- Embed another order summary below using an iframe -->
+        <div class="container">
+            <iframe
+                src="../summary.html?orderId=73164"
+                style="width:100%;border:none;min-height:400px;"
+                title="Order Summary"></iframe>
+        </div>
+        <div class="back-btn-wrapper">
+            <button class="back-btn" onclick="history.back()">&larr; Back to Search</button>
+        </div>
+    </div>
+</body>
+</html>
