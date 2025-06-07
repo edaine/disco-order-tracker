@@ -15,5 +15,5 @@ with open(output_csv, 'w', newline='') as outfile:
     writer = csv.DictWriter(outfile, fieldnames=fieldnames)
     writer.writeheader()
     for row in reader:
-        row['order_url'] = f"{GITHUB_PAGES_URL}?orderId={row['orderId']}"
+        row['order_url'] = f"{GITHUB_PAGES_URL}/order-summary?orderId={row['orderId']}"
         writer.writerow(row)
