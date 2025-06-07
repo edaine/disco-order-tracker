@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Face Painting Timetable Summary</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f7f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 32px auto;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 32px 24px 24px 24px;
+        }
+        h2 {
+            color: #2d3a4a;
+            margin-top: 0;
+            margin-bottom: 24px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 12px;
+        }
+        th, td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+        th {
+            background: #f0f4fa;
+            color: #e75480;
+        }
+        .vacant {
+            color: #2ecc40;
+            font-weight: bold;
+        }
+        .full {
+            color: #b71c1c;
+            font-weight: bold;
+        }
+        .parent-list {
+            font-size: 0.98em;
+            color: #555;
+        }
+        .no-data {
+            color: #b71c1c;
+            text-align: center;
+            margin-top: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Face Painting Timetable Summary</h2>
+        <div id="timetable"></div>
+    </div>
+    <script>
+        // Generate all 15-min slots from 4:00PM to 7:00PM
+        function generateSlots() {
+            const slots = [];
+            let hour = 16, minute = 0;
+            for (let i = 0; i < 12; i++) {
+                let h = hour > 12 ? hour - 12 : hour;
+                let ampm = hour >= 12 ? "PM" : "AM";
+                let start = `${h}:${minute.toString().padStart(2, '0')}${ampm}`;
+                minute += 15;
+                if (minute === 60) {
+                    minute = 0;
+                    hour++;
+                }
+                let h2 = hour > 12 ? hour - 12 : hour;
+                let ampm2 = hour >= 12 ? "PM" : "AM";
+                let end = `${h2}:${minute.toString().padStart(2, '0')}${ampm2}`;
+                slots.push({ time: `${start} - ${end}`, key: `${h}:${minute === 0 ? '00' : minute}${ampm}` });
+            }
+            return slots;
+        }
+
+        function normalizeTime(str) {
+            // Remove "Slot" (case-insensitive) and trim
+            if (!str) return null;
+            str = str.replace(/slot/i, '').trim();
+            // Convert 24h to 12h with AM/PM
+            let match = str.match(/^(\d{1,2}):(\d{2})(?:\s*([AP]M))?$/i);
+            if (match) {
+                let hour = parseInt(match[1], 10);
+                let min = match[2];
+                let ampm = match[3];
+                if (!ampm) {
+                    ampm = hour >= 12 ? "PM" : "AM";
+                    if (hour > 12) hour -= 12;
+                }
+                return `${hour}:${min}${ampm.toUpperCase()}`;
+            }
+            // Already in 12h format
+            return str.replace(/\s+/g, '').toUpperCase();
+        }
+        
+
+        function renderTimetable(slotMap) {
+            let html = `<table>
+                <tr>
+                    <th>Time Slot</th>
+                    <th>Parents</th>
+                    <th>Filled</th>
+                    <th>Status</th>
+                </tr>`;
+            const slotsTimes = Object.keys(slotMap);
+            slotsTimes.forEach(time => {
+                const slot = slotMap[time];
+                const filled = slot.map(entry => entry.quantity || 0).reduce((sum, qty) => sum + qty, 0);
+                const status = filled < 8
+                    ? `<span class="vacant">${8 - filled} vacant</span>`
+                    : `<span class="full">Full</span>`;
+                html += `<tr>
+                    <td>${time}</td>
+                    <td class="parent-list">${slot.map(entry => `${entry.parent} (${entry.quantity})`).join('<br>')}</td>
+                    <td>${filled}</td>
+                    <td>${status}</td>
+                </tr>`;
+            });
+            html += `</table>`;
+            return html;
+        }
+
+        fetch('data/orders.json')
+            .then(response => response.json())
+            .then(data => {
+                const slots = generateSlots();
+                // Map: slot time -> array of parent names
+                const slotMap = {};
+                slots.forEach(slot => {
+                    slotMap[slot.time] = [];
+                });
+                data.forEach(row => {
+                    const rawTime = row.face_painting_time;
+                    if (rawTime) {
+                        // Normalize the time to match our slot format
+                        const normTime = normalizeTime(rawTime);
+                        if (normTime) {
+                            // Find the slot this time belongs to
+                            const slot = slots.find(s => s.time.startsWith(normTime));
+                            if (slot) {
+                                slotMap[slot.time].push({parent: row.parent_name || '', quantity: Number(row.face_painting_quantity) || 0});
+                            }
+                        }
+                    }
+                });
+                document.getElementById('timetable').innerHTML = renderTimetable(slotMap);
+            });
+    </script>
+</body>
+</html>
